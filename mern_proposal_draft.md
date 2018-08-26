@@ -71,7 +71,7 @@ example images of flowchart:
  
 ## Group Members & Work Breakdown
 
-**Whiteman Burke**,
+**Whitman Burke**,
 **Rex Bodoia**,
 **John Lockhart**,
 
