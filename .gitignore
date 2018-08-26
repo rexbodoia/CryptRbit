@@ -27,3 +27,5 @@ bundle.map.js
 .byebug_history
 .DS_store
 npm-debug.log
+
+keys.js
