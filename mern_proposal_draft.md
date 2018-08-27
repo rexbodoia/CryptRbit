@@ -1,17 +1,14 @@
-# CryptoRbit
+# CryptRbit
 
-### CryptoRbit is a project aiming to implement machine learning to classify songs into genres
+### CryptRbit is a project aiming to implement machine learning to classify songs into genres
 
 ## Background and Overview
 
-CryptoRbit, a multi-platform MERNN app, performs realtime financial analyses of the global cryptocurrency market to identify arbitrage trading opportunities. Cryptocurrency exchanges have proliferated rapidly accross the globe, and large price discrepancies develop quickly as news, policy, and technology updates emerge, creating ideal trading opportunities. The act of exploiting the pricing inefficiencies will correct the pricing descripancy itself, so traders must be ready to act swiftly in the case with arbitrage strategies. For this reason, these opportunities are often around for a very short time. Arbitrage currency trading requires the availability of real-time pricing quotes and the ability to act fast on opportunities.
-
-Read more: How do I use an arbitrage strategy in forex trading? | Investopedia https://www.investopedia.com/ask/answers/forex/forex-arbritrage.asp#ixzz5PL0dnzqc 
-Follow us: Investopedia on FacebookThe Crypto-Rbit platform uses livestreamed exchange data to search for price action descrepancies or potential market moves and present this data in a clean, easy to use format. 
+CryptRbit, a multi-platform MERN app, performs realtime financial analyses of the global cryptocurrency market to identify arbitrage trading opportunities. Cryptocurrency exchanges have proliferated rapidly accross the globe, and large price discrepancies develop quickly as news, policy, and technology updates emerge, creating ideal trading opportunities. The act of exploiting the pricing inefficiencies will correct the pricing descripancy itself, so traders must be ready to act swiftly in the case with arbitrage strategies. For this reason, these opportunities are often around for a very short time. Arbitrage currency trading requires the availability of real-time pricing quotes and the ability to act fast on opportunities, so having a live updating arbitrage calculator that pools data from across the global exchange space will be the goal of this app.
 
 
 This problem decomposes into several areas of activity:
-  * Identify reliable, efficient data source for global exchange activity and tap into its API
+  * Identify reliable, efficient data source for global exchange activity and tap into its API in realtime manner
   * Implement analysis tools, and visualize results in realtime
   * Build notification tools for users, and potentiallly the ability to make orders in relevant exchanges.
 
