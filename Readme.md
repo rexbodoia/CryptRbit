@@ -48,10 +48,12 @@ This problem decomposes into several areas of activity:
   + visualize exchange pricing pairs and discrepancies in highly relevant and actionable format, allowing for user inputed constraints and live updating
   + visualize global 'heatmap' of exchange volume per coin (or coin) in informative and visually pleasing format with clickable links to more specific information
 
-#### MVP Create cross platform app functioning on mobile and web browser
+#### MVP Create ReactJS app functioning on mobile and web browser
  + ##### Frontend Interface ReactJS
    - build out component map in html
    - will need dedicated CSS, but using similar global styles as React-Native App
+
+#### MVP Create ReactNative app functioning on mobile and web browser
  + ##### Frontend Interface React-Native
    - build out component map in React-Native components
    - will need dedicated CSS, but using similar global styles as React-Native App
@@ -79,19 +81,25 @@ global exchange volume heat map wireframe:
 **John Lockhart**,
 
 ### Day 1/2
- - create backend routes, API calls, and data analysis methods (Whitman/Rex/John to divide evenly)
+- create backend routes - Whitman
+- API calls - Rex
+- data analysis methods John
+- google news visualization - Whitman
+- global exchange heat map - John
+- arbitrage visualization - Rex
+- make React Native wireframes - John
 
-### Day 3
+### Day 3/4
 
-- make over weekend, break up and assign tasks, come together daily to check in and update/problem solve
+- build out React Native Components for each data visuazliation - John/Rex
+- Connect MongoDB/Express to ReactNative App - Whitman
 
+### Day 5/6
+ - publish React Native app to app store, disseminate via social media accounts - Rex
 
-### Day 4
- - make over weekend, break up and assign tasks, come together daily to check in and update/problem solve
-
-### Day 5
- - make over weekend, break up and assign tasks, come together daily to check in and update/problem solve
-
-### Day 6
-- make over weekend, break up and assign tasks, come together daily to check in and update/problem solve
+### Day 6/7
+- built React JS component equivalents
+- google news visualization - Whitman
+- global exchange heat map - John
+- arbitrage visualization - Rex
 
