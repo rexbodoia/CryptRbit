@@ -44,9 +44,14 @@ This problem decomposes into several areas of activity:
 
 #### MVP Dynamically visualize and display data in realtime based on user constraints
   + write appropriate layer of abstraction that provide flexibility in data collection, storage, cleaning/filtering
-  + visualize news feed as clickable links to current/relevant news topics sourced from API (google vs cryptocompare), auto updating for time and for selected coin/exchange
+  + visualize news feed as clickable links to current/relevant news topics sourced from API (google vs cryptocompare), update by time and update by selected coin-pair in main display graph
   + visualize exchange pricing pairs and discrepancies in highly relevant and actionable format, allowing for user inputed constraints and live updating
-  + visualize global 'heatmap' of exchange volume per coin (or coin) in informative and visually pleasing format with clickable links to more specific information
+    default on home page:
+    - Biggest price difference by percentage (two exchange that have the same currency pair), display 4 of them, each with coin pair and price on both exchanges, bar graph height relative to price difference ordered left to right, biggest to smallest
+    - select by toggle/button top 4 biggest market cap coins, for each one display current biggest price difference between two exchanges default USD, with exchange prices
+    - select by toggle/button a coin-pair (with default /USD) and see all the exchange prices listed as a bar graph, with average price line and deviation above colored difference than below
+    - select by toggle/button a coin-pair to see the top 4 biggest price differenc for a specific coin pair... e.g. ETH/USD
+  + visualize global 'heatmap' of exchange volume per coin (or coin) in informative and visually pleasing format displayed circular pie chart
 
 #### MVP Create ReactJS app functioning on mobile and web browser
  + ##### Frontend Interface ReactJS
