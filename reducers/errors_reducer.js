@@ -6,7 +6,7 @@ const errorsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RESPONSE_ERROR:
-      return merge({}, state, action.Message);
+      return merge({}, state, action.message);
     default:
       return state;
   }
