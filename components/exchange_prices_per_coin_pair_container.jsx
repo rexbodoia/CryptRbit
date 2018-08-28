@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import ExchangePricesPerCoinPair from './exchange_prices_per_coin_pair';
 
 const mapStateToProps = state => ({
-  
+  exchange: state.exchange,
+  price: state.price,
+  fsym: state.fsym,
+  tsym: state.tsym
 });
 
 const mapDispatchToProps = dispatch => ({
