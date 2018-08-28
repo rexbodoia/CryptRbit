@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import {fetchArticles} from '../actions/news_feed_actions';
+import {fetchArticles} from '../../actions/news_feed_actions';
 import NewsFeed from './news_feed';
 
 const mapStateToProps = (state, ownProps) => ({
-  newsArticles: state.newsArticles
+  newsArticles: state.entities.newsArticles
 });
 
 const mapDispatchToProps = dispatch => ({
