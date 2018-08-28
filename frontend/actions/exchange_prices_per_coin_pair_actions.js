@@ -11,7 +11,7 @@ const receiveExchangePricesPerCoinPair = payload => ({
 
 const receiveErrors = errorPayload => ({
   type: RESPONSE_ERROR,
-  error: errorPayload.Message;
+  error: errorPayload.Message
 });
 
 export const fetchExchangePricesPerCoinPair = (coinPair, limit) => dispatch => (
