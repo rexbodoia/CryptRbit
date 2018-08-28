@@ -1,14 +1,9 @@
 // filter incoming total_data for donut Chart slice of state 
 /* incoming data example : 
     exchangeDonutData.total_data = [{
-        CoinInfo: {},
-        ConversionInfo: {
-            ...
-            CurrencyFrom: 'BTC',
-            CurrencyTo: 'USD',
-            TotalVolume24H
-        }
-       }] 
+        SYMBOL: "",
+        VOLUME24HRTO: 0,
+        },...] 
 */
 
 
@@ -18,19 +13,18 @@
                                 toSymbol: "",
                                 volume24h: 0,
                                 volume24hTo: 0,
-                        }...]
+                        },...]
 
 */
 
 export const calculatePercentages = (exchangeSlice, totalSlice) => {
     
     targetCurrency = exchangeSlice[0].exchange;
-    const selectDonutTotals = (dataArrayOfObjects) => Object.values(dataArrayOfObjects).ConversionInfo
     const totalVolume24H = (totalSlice, targetCurrency) => { 
        let target = totalSlice.forEach(obj => {
-            if (obj.CurrencyFrom === targetCurrency) return obj
+            if (obj.SYMBOL === targetCurrency) return obj
         })    
-       return selectDonutTotals(target).TotalVolume24H;
+       return selectDonutTotals(target).VOLUME24HRTO;
     } 
     const donutChartData = exchangeSlice
 
@@ -55,5 +49,5 @@ export const calculatePercentages = (exchangeSlice, totalSlice) => {
         }
     }
 
-    return donutChartData.push(createOtherExchange((precentageCalc(exchangeSlice)), totalVolume24H));
+    return donutChartData.push(createOtherExchange((percentageCalc(exchangeSlice)), totalVolume24H));
 }

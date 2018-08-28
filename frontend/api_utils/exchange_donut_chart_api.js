@@ -17,7 +17,7 @@ export const fetchTopExchangeByVolume = (from = 'BTC', to = 'USD') => {
 export const fetchTotalCoinVolume = (to = 'USD') => {
   return $.ajax({
     type: "GET",
-      url: `https://min-api.cryptocompare.com/data/top/totalvol?limit=10&tsym=${to}`
+      url: `https://min-api.cryptocompare.com/data/top/volumes?tsym=${to}`
   });
 };
 
