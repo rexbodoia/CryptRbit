@@ -5,10 +5,31 @@ import { ClipLoader } from 'react-spinners';
 class ExchangePricesPerCoinPair extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      fsym: '',
+      tsym: ''
+    }
+
+    this.update = this.update.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchPrices('BTC', 'USD', 5);
+  }
+
+  update(field) {
+    return (e) => {
+      this.setState({ [field]: e.target.value });
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let fsym = this.state.fsym;
+    let tsym = this.state.tsym;
+    this.props.fetchPrices(fsym, tsym, 5);
   }
 
   twoDecimalify(data) {
@@ -51,7 +72,17 @@ class ExchangePricesPerCoinPair extends React.Component {
     const data = this.props.data;
     return (
       <div>
-        <p className="blockquote">Hey this is bootstrap styling</p>
+        <form onSubmit={this.handleSubmit}>
+          <label>From-Currency
+            <input placeholder="BTC" onChange={this.update('fsym')}></input>
+          </label>
+
+          <label>To-Currency
+            <input placeholder="USD" onChange={this.update('tsym')}></input>
+          </label>
+
+          <input type="submit" value="Find Exchange Prices"></input>
+        </form>
         {this.renderChart(data)}
       </div>
     )
