@@ -18,7 +18,9 @@ export default class NewsFeed extends React.Component {
     if (!this.props.newsArticles) return 'Loading...';
     return (
       <div>
-        {Object.values(this.props.newsArticles).map((article, idx) => <NewsFeedItem key={idx} article={article}/>)}
+        <ul>
+          {Object.values(this.props.newsArticles).map((article, idx) => <NewsFeedItem key={idx} article={article}/>)}
+        </ul>
       </div>
     );
   }
