@@ -9,5 +9,11 @@ const receiveExchangePricesPerCoinPair = payload => ({
 
 export const fetchExchangePricesPerCoinPair = (coinPair, limit) => dispatch => (
   APIUtil.fetchExchangePricesPerCoinPair(coinPair, limit)
-    .then(prices => dispatch(receiveExchangePricesPerCoinPair(payload)))
+    .then(prices => {
+      if (prices.Response == "Error") {
+        
+      } else {
+        dispatch(receiveExchangePricesPerCoinPair(payload));
+      }
+    })
 )
