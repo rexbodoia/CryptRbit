@@ -44,19 +44,23 @@ class ExchangePricesPerCoinPair extends React.Component {
   renderChart(data) {
     if (data.length > 0) {
       return (
-        <ResponsiveContainer width="60%" height={400}>
-          <BarChart width={730} height={400} data={data}>
-            <XAxis dataKey="MARKET" />
-            <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="PRICE" fill="#8884d8" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="row">
+          <div className="col-md-2" style={{ height: 400 }}></div>
+          <ResponsiveContainer width="66%" height={400} className="col-md-8">
+            <BarChart width={730} height={400} data={data}>
+              <XAxis dataKey="MARKET" />
+              <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="PRICE" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+          <div className="col-md-2" style={{ height: 400 }}></div>
+        </div>
       );
     } else {
       return (
-        <div style={{ height: 160, marginLeft: 400, marginTop: 80 }}>
+        <div>
           <ClipLoader
             className='spinner'
             sizeUnit={"px"}
@@ -71,17 +75,20 @@ class ExchangePricesPerCoinPair extends React.Component {
   render() {
     const data = this.props.data;
     return (
-      <div className="exchange-prices-per-coin-pair-container">
-        <form onSubmit={this.handleSubmit} className="coin-selection-form">
-          <label>From-Currency
-            <input placeholder="BTC" onChange={this.update('fsym')}></input>
-          </label>
+      <div className="container">
+        <form onSubmit={this.handleSubmit}>
 
-          <label>To-Currency
-            <input placeholder="USD" onChange={this.update('tsym')}></input>
-          </label>
+          <div className="row" align="center">
+            <label className="col-4">From-Currency
+              <input placeholder=" BTC" onChange={this.update('fsym')}></input>
+            </label>
 
-          <input type="submit" value="Find Exchange Prices"></input>
+            <label className="col-4">To-Currency
+              <input placeholder=" USD" onChange={this.update('tsym')}></input>
+            </label>
+
+            <input type="submit" value="Find Exchange Prices" className="col-4"></input>
+          </div>
         </form>
         {this.renderChart(data)}
       </div>
