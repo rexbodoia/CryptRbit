@@ -2,6 +2,19 @@
   margin-top: 20px;
 }
 
+.padding-20 {
+  padding: 20px;
+}
+
+.arbitrage-heading {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#arbitrage-description {
+  font-size: 18px;
+}
+
 /* .exchange-prices-per-coin-pair-container {
   display: flex;
   align-items: center;

@@ -75,8 +75,12 @@ class ExchangePricesPerCoinPair extends React.Component {
   render() {
     const data = this.props.data;
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
+      <div className="container top-buffer">
+        <div className="jumbotron jumbotron-fluid arbitrage-heading">
+          <h2 className="display-4">Arbitrage Opportunities</h2>
+          <p className="lead" id="arbitrage-description">These are the current price differences at the top five crypto exchanges for the given currency pair. If you have an account at any two of these exchanges, theoretically you could transfer some of this currency from the exchange with the higher price to the exchange with the lower price to take advantage of an arbitrage opportunity.</p>
+        </div>
+        <form onSubmit={this.handleSubmit} className="padding-20">
 
           <div className="row" align="center">
             <label className="col-4">From-Currency
