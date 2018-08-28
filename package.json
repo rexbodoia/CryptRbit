@@ -14,11 +14,14 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "create-react-app": "^1.5.2",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.9",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "validator": "^10.7.0"
   },
   "devDependencies": {
