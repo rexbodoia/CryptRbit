@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
+import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
 
 class ExchangePricesPerCoinPair extends React.Component {
   constructor(props) {
@@ -23,13 +23,15 @@ class ExchangePricesPerCoinPair extends React.Component {
     const data = this.props.data;
     return (
       <div>
-        <BarChart width={730} height={250} data={data}>
-          <XAxis dataKey="MARKET" />
-          <YAxis domain={['dataMin', 'dataMax']} />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="PRICE" fill="#8884d8" />
-        </BarChart>
+        <ResponsiveContainer width="60%" height={250}>
+          <BarChart width={730} height={250} data={data}>
+            <XAxis dataKey="MARKET" />
+            <YAxis domain={['dataMin', 'dataMax']} />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="PRICE" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     )
   }
