@@ -18,8 +18,8 @@ export default class NewsFeedItem extends React.Component {
           <a href={article.url} className="undo-link-style">
             <h4 className="card-title">{article.title}</h4>
           </a>
-          <p className="card-text" dangerouslySetInnerHTML={{__html: (article.body.slice(0, 500)).replace(/[\[\]]/g, '')}}></p>
-          <span className="card-footer">{article.tags.split}</span>
+          <p className="card-text" dangerouslySetInnerHTML={{__html: (article.body.slice(0, 400)).replace(/[\[\]]/g, '')}}></p>
+          <span className="card-footer">{article.tags.split("|").join(" | ")}</span>
         </div>
       </li>
     );

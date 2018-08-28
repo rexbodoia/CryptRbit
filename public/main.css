@@ -14,3 +14,35 @@
 ul {
   list-style: none;
 }
+.padding-20 {
+  padding: 20px;
+}
+
+.arbitrage-heading {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#arbitrage-description {
+  font-size: 18px;
+}
+
+/* .exchange-prices-per-coin-pair-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.coin-selection-form {
+  padding: 10px;
+}
+
+.inputs-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputs-container input {
+  padding: 4px 8px;
+  margin: 12px;
+} */
