@@ -9,3 +9,5 @@ const exchangeDonutReducer = (state = {}, action) => {
             return state;
     }
 }
+
+export default exchangeDonutReducer;
