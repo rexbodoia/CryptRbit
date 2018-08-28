@@ -2,17 +2,11 @@ import { RECEIVE_EXCHANGE_PRICES_PER_COIN_PAIR } from '../actions/exchange_price
 
 import { merge } from 'lodash';
 
-const exchangePricesPerCoinPairReducer = (state = {}, action) => {
+const exchangePricesPerCoinPairReducer = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_EXCHANGE_PRICES_PER_COIN_PAIR:
-      let payload = {
-        exchange: action.payload["MARKET"],
-        price: action.payload["PRICE"],
-        fsym: action.payload["FROMSYMBOL"],
-        tsym: action.payload["TOSYMBOL"]
-      }
-      return payload;
+      return action.payload.Data.Exchanges;
     default:
       return state;
   }
