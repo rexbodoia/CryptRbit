@@ -19,7 +19,7 @@ export const fetchArticles = params => dispatch => (
       if (payload.Response === 'Error') {
         dispatch(receiveErrors(payload));
       } else {
-        dispatch(receiveArticles(payload))
+        dispatch(receiveArticles(payload));
       }
     })
 );
