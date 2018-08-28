@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import exchangePricesPerCoinPairReducer from './exchange_prices_per_coin_pair_reducer';
 import errorsReducer from './errors_reducer';
-import newsFeedReducer from './news_feed_reducer';
+import newsArticlesReducer from './news_articles_reducer';
 
 const rootReducer = combineReducers({
   errors: errorsReducer,
   exchangePricesPerCoinPair: exchangePricesPerCoinPairReducer,
-  newsFeed: newsFeedReducer
+  newsArticles: newsArticlesReducer
 });
 
 export default rootReducer;

@@ -1,11 +1,11 @@
 import * as APIUtil from '../api_utils/news_api';
 
-export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
+export const RECEIVE_NEWS_ARTICLES = 'RECEIVE_NEWS_ARTICLES';
 export const RESPONSE_ERROR = 'RESPONSE_ERROR';
 
-const receiveArticles = articles => ({
-  type: RECEIVE_ARTICLES,
-  articles
+const receiveArticles = newsArticles => ({
+  type: RECEIVE_NEWS_ARTICLES,
+  newsArticles
 });
 
 const receiveErrors = error => ({
