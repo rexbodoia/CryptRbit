@@ -1,6 +1,6 @@
-export const fetchExchangePricesPerCoinPair = (coinPair, limit) => (
+export const fetchExchangePricesPerCoinPair = (fsym, tsym, limit) => (
   $.ajax({
-    url: `https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinPair[0]}&tsym=${coinPair[1]}&limit=${limit}`,
+    url: `https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${fsym}&tsym=${tsym}&limit=${limit}`,
     method: 'GET'
   })
 );
