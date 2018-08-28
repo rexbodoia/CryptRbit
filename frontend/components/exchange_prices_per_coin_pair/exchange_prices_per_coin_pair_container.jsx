@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import ExchangePricesPerCoinPair from './exchange_prices_per_coin_pair';
-import { fetchExchangePricesPerCoinPair } from '../actions/exchange_prices_per_coin_pair_actions';
+import { fetchExchangePricesPerCoinPair } from '../../actions/exchange_prices_per_coin_pair_actions';
 
 const mapStateToProps = state => ({
-  data: state.exchangePricesPerCoinPair
+  data: state.entities.exchangePricesPerCoinPair
 });
 
 const mapDispatchToProps = dispatch => ({
