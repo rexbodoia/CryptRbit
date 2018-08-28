@@ -1,3 +1,16 @@
 .top-buffer {
   margin-top: 20px;
 }
+
+.padding-20 {
+  padding: 20px;
+}
+
+.arbitrage-heading {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#arbitrage-description {
+  font-size: 16px;
+}
