@@ -44,10 +44,10 @@ class ExchangePricesPerCoinPair extends React.Component {
   renderChart(data) {
     if (data.length > 0) {
       return (
-        <ResponsiveContainer width="60%" height={250}>
-          <BarChart width={730} height={250} data={data}>
+        <ResponsiveContainer width="60%" height={400}>
+          <BarChart width={730} height={400} data={data}>
             <XAxis dataKey="MARKET" />
-            <YAxis domain={[dataMin => (dataMin - dataMin / 400).toFixed(2), 'dataMax']} />
+            <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
             <Tooltip />
             <Legend />
             <Bar dataKey="PRICE" fill="#8884d8" />
@@ -71,8 +71,8 @@ class ExchangePricesPerCoinPair extends React.Component {
   render() {
     const data = this.props.data;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="exchange-prices-per-coin-pair-container">
+        <form onSubmit={this.handleSubmit} className="coin-selection-form">
           <label>From-Currency
             <input placeholder="BTC" onChange={this.update('fsym')}></input>
           </label>

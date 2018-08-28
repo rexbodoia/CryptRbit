@@ -1,3 +1,13 @@
 .top-buffer {
   margin-top: 20px;
 }
+
+.exchange-prices-per-coin-pair-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.coin-selection-form {
+  padding: 24px;
+}
