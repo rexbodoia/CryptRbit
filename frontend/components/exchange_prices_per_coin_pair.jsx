@@ -51,6 +51,7 @@ class ExchangePricesPerCoinPair extends React.Component {
     const data = this.props.data;
     return (
       <div>
+        <p className="blockquote">Hey this is bootstrap styling</p>
         {this.renderChart(data)}
       </div>
     )
