@@ -12,7 +12,7 @@ const exchangePricesPerCoinPairReducer = (state = {}, action) => {
         fsym: action.payload["FROMSYMBOL"],
         tsym: action.payload["TOSYMBOL"]
       }
-      return merge({}, state, payload);
+      return payload;
     default:
       return state;
   }
