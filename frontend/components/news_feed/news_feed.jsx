@@ -32,16 +32,16 @@ export default class NewsFeed extends React.Component {
     let pageCount = this.props.newsArticles.length / this.state.articlesPerPage;
 
     for (let i = 0; i < pageCount; i++) {
-      i === this.state.currentPage ? className="active" : className="";
+      i === this.state.currentPage ? className="active page-item" : className="page-item";
       pageNavs.push(
         <li key={i} className={className} onClick={this.handleNavChange}>
-          <a href="">{i}</a>
+          <a className="page-link" href="">{i}</a>
         </li>
       );
     }
     return (
-      <div className="text-center">
-        <ul className="pagination">
+      <div>
+        <ul className="pagination justify-content-center mt-4">
           {pageNavs.map(nav => nav)}
         </ul>
       </div>
@@ -62,7 +62,7 @@ export default class NewsFeed extends React.Component {
     }
 
     return <div className="dropdown">
-      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      <button className="btn btn-primary dropdown-toggle left-buffer align-center" type="button" data-toggle="dropdown">
         Filter by Category
         <span className="caret" />
       </button>
@@ -91,7 +91,7 @@ export default class NewsFeed extends React.Component {
       newsSources = [];
     }
     return <div className="dropdown">
-      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      <button className="btn btn-primary dropdown-toggle left-buffer" type="button" data-toggle="dropdown">
         Filter by News Source
         <span className="caret" />
       </button>
@@ -108,16 +108,16 @@ export default class NewsFeed extends React.Component {
   }
 
   render() {
-    if (this.props.newsArticles.length === 0) return 'Loading...';
-
     const {currentPage, articlesPerPage} = this.state;
     const startIdx = currentPage * articlesPerPage;
 
     return (
-      <div className="col-md-7">
-        <h1 className="news-feed-title">News Feed</h1>
-        {this.filterCategory()}
-        {this.filterNewsSource()}
+      <div className="col-12">
+        <div className="row">
+          <h1 className="news-feed-title">News Feed</h1>
+          {this.filterCategory()}
+          {this.filterNewsSource()}
+        </div>
         <ul className="card-group">
           {this.props.newsArticles
             .slice(startIdx, startIdx + articlesPerPage)
