@@ -10,26 +10,20 @@ class ExchangePricesPerCoinPair extends React.Component {
       fsym: '',
       tsym: ''
     }
-
-    this.update = this.update.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchPrices('BTC', 'USD', 5);
+    let coins = this.props.coinPair;
+    this.props.fetchPrices(coins.fsym, coins.tsym, 5);
   }
 
-  update(field) {
-    return (e) => {
-      this.setState({ [field]: e.target.value });
+  componentWillReceiveProps(newProps) {
+    let oldCoins = this.props.coinPair;
+    let newCoins = newProps.coinPair;
+
+    if (oldCoins.fsym != newCoins.fsym || oldCoins.tsym != newCoins.tsym) {
+      this.props.fetchPrices(newCoins.fsym, newCoins.tsym, 5);
     }
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    let fsym = this.state.fsym;
-    let tsym = this.state.tsym;
-    this.props.fetchPrices(fsym, tsym, 5);
   }
 
   twoDecimalify(data) {
@@ -45,8 +39,9 @@ class ExchangePricesPerCoinPair extends React.Component {
     if (data.length > 0) {
       return (
         <div className="row">
-          <div className="col-md-2" style={{ height: 400 }}></div>
-          <ResponsiveContainer width="66%" height={400} className="col-md-8">
+          <div className="col-md-2" style={{ height: 400 }}>
+          </div>
+          <ResponsiveContainer width="75%" height={400} className="col-md-9">
             <BarChart width={730} height={400} data={data}>
               <XAxis dataKey="MARKET" />
               <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
@@ -55,7 +50,7 @@ class ExchangePricesPerCoinPair extends React.Component {
               <Bar dataKey="PRICE" fill="#8884d8" />
             </BarChart>
           </ResponsiveContainer>
-          <div className="col-md-2" style={{ height: 400 }}></div>
+          <div className="col-md-1" style={{ height: 400 }}></div>
         </div>
       );
     } else {
@@ -75,25 +70,11 @@ class ExchangePricesPerCoinPair extends React.Component {
   render() {
     const data = this.props.data;
     return (
-      <div className="container top-buffer">
-        <div className="jumbotron jumbotron-fluid arbitrage-heading">
+      <div>
+        <div className="jumbotron jumbotron-fluid arbitrage-heading p-5">
           <h2 className="display-4">Arbitrage Opportunities</h2>
           <p className="lead" id="arbitrage-description">These are the current price differences at the top five crypto exchanges for the given currency pair. If you have an account at any two of these exchanges, theoretically you could transfer some of this currency from the exchange with the higher price to the exchange with the lower price to take advantage of an arbitrage opportunity.</p>
         </div>
-        {/* <form onSubmit={this.handleSubmit} className="padding-20">
-
-          <div className="row" align="center">
-            <label className="col-4">From-Currency
-              <input placeholder=" BTC" onChange={this.update('fsym')}></input>
-            </label>
-
-            <label className="col-4">To-Currency
-              <input placeholder=" USD" onChange={this.update('tsym')}></input>
-            </label>
-
-            <input type="submit" value="Find Exchange Prices" className="col-4"></input>
-          </div>
-        </form> */}
         {this.renderChart(data)}
       </div>
     )
