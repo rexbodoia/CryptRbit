@@ -11,9 +11,14 @@
   text-decoration: none;
 }
 
+.news-feed-title {
+  padding-left: 40px;
+}
+
 ul {
   list-style: none;
 }
+
 .padding-20 {
   padding: 20px;
 }
