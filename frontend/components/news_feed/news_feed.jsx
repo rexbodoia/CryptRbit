@@ -1,6 +1,4 @@
 import React from 'react';
-// require('bootstrap');
-
 import NewsFeedItem from './news_feed_item';
 
 export default class NewsFeed extends React.Component {

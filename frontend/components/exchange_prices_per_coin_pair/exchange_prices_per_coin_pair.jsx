@@ -1,7 +1,6 @@
 import React from 'react';
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
 import { ClipLoader } from 'react-spinners';
-// require('bootstrap');
 
 class ExchangePricesPerCoinPair extends React.Component {
   constructor(props) {
@@ -41,16 +40,6 @@ class ExchangePricesPerCoinPair extends React.Component {
       return (
         <div className="row">
           <div className="col-md-2" style={{ height: 400 }}>
-            <select class="mdb-select colorful-select dropdown-primary" multiple searchable="Search here..">
-                <option value="" disabled selected>Choose your country</option>
-                <option value="1">USA</option>
-                <option value="2">Germany</option>
-                <option value="3">France</option>
-                <option value="4">Poland</option>
-                <option value="5">Japan</option>
-            </select>
-            <label>Label example</label>
-            <button class="btn-save btn btn-primary btn-sm">Save</button>
           </div>
           <ResponsiveContainer width="75%" height={400} className="col-md-9">
             <BarChart width={730} height={400} data={data}>
@@ -81,7 +70,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   render() {
     const data = this.props.data;
     return (
-      <div className="container top-buffer">
+      <div>
         <div className="jumbotron jumbotron-fluid arbitrage-heading p-5">
           <h2 className="display-4">Arbitrage Opportunities</h2>
           <p className="lead" id="arbitrage-description">These are the current price differences at the top five crypto exchanges for the given currency pair. If you have an account at any two of these exchanges, theoretically you could transfer some of this currency from the exchange with the higher price to the exchange with the lower price to take advantage of an arbitrage opportunity.</p>

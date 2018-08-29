@@ -5,7 +5,7 @@ import CoinPairFormContainer from './coin_pair_form/coin_pair_form_container';
 import NewsFeedContainer from './news_feed/news_feed_container';
 
 const App = () => (
-  <div>
+  <div className='container mt-2'>
     <CoinPairFormContainer />
     <ExchangePricesPerCoinPairContainer />
     <NewsFeedContainer />
