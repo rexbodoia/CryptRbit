@@ -6,28 +6,19 @@ export default class NewsFeed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      params: [],
       currentPage: 0,
       articlesPerPage: 10,
-      filterType: '',
-      filterValue: ''
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
-    this.setFilter = this.setFilter.bind(this);
+    this.setCategory = this.setCategory.bind(this);
+    this.setNewsSource = this.setNewsSource.bind(this);
   }
 
   componentDidMount() {
-    let { newsArticles } = this.props;
-    const { filterType, filterValue } = this.state;
-
-    if (!filterType || !filterValue) this.props.fetchArticles(this.state.params.concat(this.props.coinPair));
-
-    if (filterType === 'Exchange') {
-      this.props.fetchArticles(this.state.params.concat(`${this.props.coinPair},${this.state.filterValue}`));
-    } else if (filterType === 'News Source') {
-      this.props.fetchArticles(this.state.params.concat(this.props.coinPair, `source=${this.state.filterValue}`));
-    }
+    this.props.fetchArticles(this.props.coinPair);
+    this.props.fetchCategories();
+    this.props.fetchSources();
   }
 
   handleNavChange(e) {
@@ -39,7 +30,7 @@ export default class NewsFeed extends React.Component {
   listNavigator() {
     let pageNavs = [];
     let className;
-    let pageCount = Object.keys(this.props.newsArticles).length / this.state.articlesPerPage;
+    let pageCount = this.props.newsArticles.length / this.state.articlesPerPage;
 
     for (let i = 0; i < pageCount; i++) {
       i === this.state.currentPage ? className="active" : className="";
@@ -58,57 +49,68 @@ export default class NewsFeed extends React.Component {
     )
   }
 
-  setFilter(e) {
+  setCategory(e) {
     e.preventDefault();
-    this.setState({filterType: e.target.innerText});
+    this.props.fetchArticles(`categories=${e.target.getAttribute('id')}`);
   }
 
-  filterDropdown() {
-    return (
-      <div className="dropdown">
-        <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter by
-          <span className="caret"></span>
-        </button>
-        <ul className="dropdown-menu">
-          <li><a onClick={this.setFilter} href="">Exchange</a></li>
-          <li><a onClick={this.setFilter} href="">News Source</a></li>
-          <li><a onClick={this.setFilter} href="">Tag</a></li>
-        </ul>
-      </div>
-    );
-  }
-
-  handleInput(property) {
-    return e => this.setState({[property]: e.target.value})
-  }
-
-  filterInput() {
-    let placeholder;
-    this.state.filterType ? placeholder = `Enter ${this.state.filterType.toLowerCase()}` : placeholder = '';
-    return (
-      <input 
-        placeholder={placeholder} 
-        value={this.state.filterValue} 
-        onChange={this.handleInput('filterValue')}>
-      </input>
-    );
-  }
-
-  filteredArticles() {
-    let {newsArticles} = this.props;
-    const {filterType, filterValue} = this.state;
-
-    if (!filterType || !filterValue) return Object.values(newsArticles);
-
-    if (filterType === 'Exchange') {
-      this.props.fetchArticles(this.state.params.concat(`${this.props.coinPair},${this.state.filterValue}`));
-    } else if (filterType === 'News Source') {
-      this.props.fetchArticles(this.state.params.concat(this.props.coinPair, `source=${this.state.filterValue}`));
+  filterCategory() {
+    let newsCategories;
+    if (this.props.newsCategories) {
+      newsCategories = Object.values(this.props.newsCategories);
+    } else {
+      newsCategories = [];
     }
+
+    return <div className="dropdown">
+      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Filter by Category
+        <span className="caret" />
+      </button>
+      <ul className="dropdown-menu">
+        {newsCategories.map(category => (
+          <li key={category.categoryName}>
+            <a id={category.categoryName} href="" onClick={this.setCategory}>
+              {category.wordsAssociatedWithCategory[1]}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>;
+  }
+
+  setNewsSource(e) {
+    e.preventDefault();
+    this.props.fetchArticles(`feeds=${e.target.getAttribute('id')}`);
+  }
+
+  filterNewsSource() {
+    let newsSources;
+    if (this.props.newsSources) {
+      newsSources = Object.values(this.props.newsSources);
+    } else {
+      newsSources = [];
+    }
+    // debugger;
+    return <div className="dropdown">
+      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Filter by News Source
+        <span className="caret" />
+      </button>
+      <ul className="dropdown-menu">
+        {newsSources.map(source => (
+          <li key={source.key}>
+            <a id={source.key} href="" onClick={this.setNewsSource}>
+              {source.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>;
   }
 
   render() {
-    if (!this.props.newsArticles) return 'Loading...';
+    if (this.props.newsArticles.length === 0) return 'Loading...';
 
     const {currentPage, articlesPerPage} = this.state;
     const startIdx = currentPage * articlesPerPage;
@@ -116,10 +118,10 @@ export default class NewsFeed extends React.Component {
     return (
       <div className="col-md-7">
         <h1 className="news-feed-title">News Feed</h1>
-        {this.filterDropdown()}
-        {this.filterInput()}
+        {this.filterCategory()}
+        {this.filterNewsSource()}
         <ul className="card-group">
-          {Object.values(this.props.newsArticles)
+          {this.props.newsArticles
             .slice(startIdx, startIdx + articlesPerPage)
             .map((article, idx) => <NewsFeedItem key={idx} article={article}/>)}
         </ul>
