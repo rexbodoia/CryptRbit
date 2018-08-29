@@ -1,4 +1,5 @@
 import React from 'react';
+// require('bootstrap');
 
 export default class NewsFeedItem extends React.Component {
   constructor(props) {

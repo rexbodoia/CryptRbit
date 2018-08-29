@@ -1,4 +1,5 @@
 import React from 'react';
+// require('bootstrap');
 
 import NewsFeedItem from './news_feed_item';
 

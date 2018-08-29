@@ -1,4 +1,5 @@
 import React from 'react';
+// require('bootstrap');
 
 class CoinPairForm extends React.Component {
   constructor(props){
