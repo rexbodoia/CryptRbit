@@ -32,11 +32,11 @@ class CoinPairForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="padding-20">
 
           <div className="row" align="center">
-            <label className="col-5">From-Currency
-              <input placeholder=" BTC" onChange={this.update('fsym')}></input>
+            <label className="col-5">From-Currency:
+              <input placeholder=" BTC" onChange={this.update('fsym')} className="ml-2"></input>
             </label>
 
-            <label className="col-5">To-Currency
+            <label className="col-5">To-Currency:
               <input placeholder=" USD" onChange={this.update('tsym')}></input>
             </label>
 
