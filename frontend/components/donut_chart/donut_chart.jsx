@@ -1,7 +1,10 @@
 import React from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, colors } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Label } from 'recharts';
 import { ClipLoader } from "react-spinners";
 
+const COLORS = [
+    "#6B8E23", "#556B2F", "#66CDAA", "#8FBC8F", "#20B2AA", "#008B8B"
+];
 
 class DonutChart extends React.Component {
     constructor() {
@@ -13,23 +16,26 @@ class DonutChart extends React.Component {
         this.props.getTotal("USD");
     }
 
+    
 
     renderChart (data) {
         if (data) {
             return (
-                <ResponsiveContainer width="100%" height={250}>
-                <PieChart  >
+                <ResponsiveContainer width="100%" height={500}>
+                <PieChart >
                   <Pie data={data} 
-                  datakey="value" 
-                  nameKey="exchange" 
-                //   cx="50%" cy="50%" 
-                  innerRadius={40} outerRadius={80} fill="#82ca9d" label={true}>
+                  dataKey="value"
+                  nameKey="exchange"
+                  isAnimationActive={true}
+                  innerRadius={110} outerRadius={140} fill="#82ca9d" label>
                 {
                     data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index]} />
+                        <Cell key={`cell-${index}`} fill={COLORS[index]} />
                     ))
                 }
+                    <Label value="% Total 24hour BTC/USD Volume" position="center" />
                   </Pie>
+                <Tooltip />
                 </PieChart>
          </ResponsiveContainer>);    
         } else {

@@ -37,7 +37,7 @@ export const setChartData = (exchangeSlice, totalSlice) => {
     const percentageCalc = (data, totalVolume) => {
         let topExchangeSum = 0;
         data.forEach( (exchange) => {
-            exchange.percentageTotal = exchange.volume24hTo / totalVolume * 100;
+            exchange.percentageTotal = parseFloat(((exchange.volume24hTo / totalVolume) * 100).toFixed(2));
             topExchangeSum += exchange.volume24hTo
         });
         //return sum of all top 5 exchanges total volumes
@@ -50,7 +50,7 @@ export const setChartData = (exchangeSlice, totalSlice) => {
         return  {
             exchange: 'other', 
             volume24hTo: (totalVolume24H - totalValue),
-            percentageTotal: otherPercentage
+            percentageTotal: parseFloat(otherPercentage.toFixed(2))
         }
     }
     //call functions
