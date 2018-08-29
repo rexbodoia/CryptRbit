@@ -91,7 +91,6 @@ export default class NewsFeed extends React.Component {
     } else {
       newsSources = [];
     }
-    // debugger;
     return <div className="dropdown">
       <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
         Filter by News Source
