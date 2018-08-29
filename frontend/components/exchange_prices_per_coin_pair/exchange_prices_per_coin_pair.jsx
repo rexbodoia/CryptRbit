@@ -80,7 +80,7 @@ class ExchangePricesPerCoinPair extends React.Component {
           <h2 className="display-4">Arbitrage Opportunities</h2>
           <p className="lead" id="arbitrage-description">These are the current price differences at the top five crypto exchanges for the given currency pair. If you have an account at any two of these exchanges, theoretically you could transfer some of this currency from the exchange with the higher price to the exchange with the lower price to take advantage of an arbitrage opportunity.</p>
         </div>
-        <form onSubmit={this.handleSubmit} className="padding-20">
+        {/* <form onSubmit={this.handleSubmit} className="padding-20">
 
           <div className="row" align="center">
             <label className="col-4">From-Currency
@@ -93,7 +93,7 @@ class ExchangePricesPerCoinPair extends React.Component {
 
             <input type="submit" value="Find Exchange Prices" className="col-4"></input>
           </div>
-        </form>
+        </form> */}
         {this.renderChart(data)}
       </div>
     )
