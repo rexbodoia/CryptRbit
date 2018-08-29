@@ -26,7 +26,7 @@ require('./config/passport')(passport);
 app.use(express.static(__dirname + "/public"));
 
 // Set routes
-app.get('*', function (req, res) {
+app.use("/api/users", users);
+app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname, './index.html'));
 });
-

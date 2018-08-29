@@ -6,7 +6,7 @@ const newsArticlesReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_NEWS_ARTICLES:
-      return merge({}, state, action.newsArticles);
+      return action.newsArticles;
     default:
       return state;
   }
