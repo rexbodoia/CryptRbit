@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, PieChart, Pie } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, colors } from 'recharts';
 import { ClipLoader } from "react-spinners";
 
 
@@ -13,46 +13,45 @@ class DonutChart extends React.Component {
         this.props.getTotal("USD");
     }
 
+
     renderChart (data) {
-        if (!this.props.chartData) {
-                return (
-                    <div style={{ height: 160, marginLeft: 400, marginTop: 80 }}>
-                        <ClipLoader
-                            className='spinner'
-                            sizeUnit={"px"}
-                            size={70}
-                            color={'rgb(155, 166, 178)'}
-                        />
-                    </div>
-                )
+        if (data) {
+            return (
+                <ResponsiveContainer width="100%" height={250}>
+                <PieChart  >
+                  <Pie data={data} 
+                  datakey="value" 
+                  nameKey="exchange" 
+                //   cx="50%" cy="50%" 
+                  innerRadius={40} outerRadius={80} fill="#82ca9d" label={true}>
+                {
+                    data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={colors[index]} />
+                    ))
+                }
+                  </Pie>
+                </PieChart>
+         </ResponsiveContainer>);    
         } else {
-            console.log(
-                "data", data
-            );
-        return (
-        <ResponsiveContainer>
-            <PieChart>
-              <Pie 
-              data={data} 
-              datakey="percentageTotal" 
-              nameKey="exchange" 
-              cx="50%" cy="50%" 
-              innerRadius={40} outerRadius={80} 
-              fill="#82ca9d" 
-              label />
-            </PieChart>
-        </ResponsiveContainer>
-        )
-         
+            return (
+                <div style={{ height: 160, marginLeft: 400, marginTop: 80 }}>
+                    <ClipLoader
+                        className='spinner'
+                        sizeUnit={"px"}
+                        size={70}
+                        color={'rgb(155, 166, 178)'}
+                    />
+                </div>
+            ) 
         }
     }
 
     render() {
-        const data = this.props.chartData;
+        const data = this.props.chartData
         return (
             <div>
-                <p className="blockquote">Hey this is bootstrap styling in Donut Area</p>
                 {this.renderChart(data)}
+                <p className="blockquote">Hey this is bootstrap styling in Donut Area</p>
             </div>
         )
     }

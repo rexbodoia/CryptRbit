@@ -49,6 +49,7 @@ export const setChartData = (exchangeSlice, totalSlice) => {
         const otherPercentage = (totalVolume24H - totalValue) / totalVolume24H * 100;
         return  {
             exchange: 'other', 
+            volume24hTo: (totalVolume24H - totalValue),
             percentageTotal: otherPercentage
         }
     }
@@ -56,5 +57,10 @@ export const setChartData = (exchangeSlice, totalSlice) => {
     const total = totalVolume24H(totalSlice, targetCurrency);
     const otherObj = createOtherExchange(percentageCalc(donutChartData, total), total);
     //return new data array with all the values for chart
-    return [...donutChartData,otherObj];
+    const newArray = [...donutChartData,otherObj];
+    // console.log(newArray);
+    const newData = newArray.map(obj => {
+        return {exchange: obj.exchange, value: obj.percentageTotal}
+    })
+    return newData;
 }

@@ -4,7 +4,6 @@ import { fetchExchangePricesPerCoinPair } from '../../actions/exchange_prices_pe
 
 const mapStateToProps = state => {
   const data = state.entities.exchangePricesPerCoinPair
-  console.log(data);
    return { data: data }
 };
 
