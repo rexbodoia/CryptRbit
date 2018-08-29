@@ -18,38 +18,43 @@
 */
 
 export const setChartData = (exchangeSlice, totalSlice) => {
-    
-    targetCurrency = exchangeSlice[0].exchange;
+    const targetCurrency = exchangeSlice[0].fromSymbol;
+
+    //calculates total 24h volume of a coin in 'USD'
     const totalVolume24H = (totals, coin) => { 
-       let target = totals.forEach(obj => {
-            if (obj.SYMBOL === coin) return obj
+       let target;
+        totals.forEach(obj => {
+            if (obj.SYMBOL === coin) {
+                target = obj;
+            } 
         })    
-       return selectDonutTotals(target).VOLUME24HRTO;
+       return target.VOLUME24HOURTO;
     } 
- 
+    
 
     const donutChartData = exchangeSlice
-
-    const percentageCalc = (data) => {
+    //calculate total volume per exchange as % of totalvolume in USD
+    const percentageCalc = (data, totalVolume) => {
         let topExchangeSum = 0;
-        data.forEach( (exchange, total) => {
-    //1. calculate precentage of total
-        const percentVol = exchange.volume24h/total * 100;
-    //2. assign this new percentage of total to a new key
-        exchange.percentageTotal = percentVol;
-    //3. determine total volume of top five (and subract from the totalVolume24H (in coin))
-        topExchangeSum += exchange.volume24h});
-    
+        data.forEach( (exchange) => {
+            exchange.percentageTotal = exchange.volume24hTo / totalVolume * 100;
+            topExchangeSum += exchange.volume24hTo
+        });
+        //return sum of all top 5 exchanges total volumes
         return topExchangeSum;
     }
 
+    //create catchall 'other' category for the remaining total 24h volume %
     const createOtherExchange = (totalValue, totalVolume24H) => {
-        const otherPercentage = (totalVolume24H - totalValue) / 100;
+        const otherPercentage = (totalVolume24H - totalValue) / totalVolume24H * 100;
         return  {
             exchange: 'other', 
             percentageTotal: otherPercentage
         }
     }
-
-    return donutChartData.push(createOtherExchange((percentageCalc(donutChartData)), totalVolume24H(totalSlice,targetCurrency)));
+    //call functions
+    const total = totalVolume24H(totalSlice, targetCurrency);
+    const otherObj = createOtherExchange(percentageCalc(donutChartData, total), total);
+    //return new data array with all the values for chart
+    return [...donutChartData,otherObj];
 }

@@ -1,16 +1,18 @@
 import { setChartData } from '../../actions/selectors';
 import {connect} from 'react-redux';
 import DonutChart from './donut_chart';
-import { fetchTopExchangeForDonut,
+import {
+    fetchTopExchangeForDonut,
     fetchTotalVolumeForDonut } from '../../actions/exchange_donut_actions';
 
 //under entitites...
 
-const msp = ( state ) => {
-    data = state.entitites.exchangeDonutData
-    return {
-        chartData: setChartData(data.exchangesData, data.totalData)
+const msp = ( state ) => { 
+    const data = state.entities.exchangeDonutData;
+    if (data.totalData && data.exchangesData) { return {chartData: setChartData(data.exchangesData, data.totalData) } }else {
+        return {}
     }
+    
 }
 
 const mdp = (dispatch) => {
