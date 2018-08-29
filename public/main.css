@@ -1,3 +1,28 @@
 .top-buffer {
   margin-top: 20px;
 }
+
+.undo-link-style {
+  color: black;
+  text-decoration: none;
+}
+.undo-link-style:hover {
+  color: black;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+.padding-20 {
+  padding: 20px;
+}
+
+.arbitrage-heading {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#arbitrage-description {
+  font-size: 16px;
+}

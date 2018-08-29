@@ -5,10 +5,25 @@ import { ClipLoader } from 'react-spinners';
 class ExchangePricesPerCoinPair extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      fsym: '',
+      tsym: ''
+    }
   }
 
   componentDidMount() {
-    this.props.fetchPrices('BTC', 'USD', 5);
+    let coins = this.props.coinPair;
+    this.props.fetchPrices(coins.fsym, coins.tsym, 5);
+  }
+
+  componentWillReceiveProps(newProps) {
+    let oldCoins = this.props.coinPair;
+    let newCoins = newProps.coinPair;
+
+    if (oldCoins.fsym != newCoins.fsym || oldCoins.tsym != newCoins.tsym) {
+      this.props.fetchPrices(newCoins.fsym, newCoins.tsym, 5);
+    }
   }
 
   twoDecimalify(data) {
@@ -23,19 +38,24 @@ class ExchangePricesPerCoinPair extends React.Component {
   renderChart(data) {
     if (data.length > 0) {
       return (
-        <ResponsiveContainer width="60%" height={250}>
-          <BarChart width={730} height={250} data={data}>
-            <XAxis dataKey="MARKET" />
-            <YAxis domain={['dataMin - 20', 'dataMax']} />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="PRICE" fill="#8884d8" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="row">
+          <div className="col-md-2" style={{ height: 400 }}>
+          </div>
+          <ResponsiveContainer width="75%" height={400} className="col-md-9">
+            <BarChart width={730} height={400} data={data}>
+              <XAxis dataKey="MARKET" />
+              <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="PRICE" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+          <div className="col-md-1" style={{ height: 400 }}></div>
+        </div>
       );
     } else {
       return (
-        <div style={{ height: 160, marginLeft: 400, marginTop: 80 }}>
+        <div>
           <ClipLoader
             className='spinner'
             sizeUnit={"px"}
@@ -51,7 +71,10 @@ class ExchangePricesPerCoinPair extends React.Component {
     const data = this.props.data;
     return (
       <div>
-        <p className="blockquote">Hey this is bootstrap styling</p>
+        <div className="jumbotron jumbotron-fluid arbitrage-heading p-5">
+          <h2 className="display-4">Arbitrage Opportunities</h2>
+          <p className="lead" id="arbitrage-description">These are the current price differences at the top five crypto exchanges for the given currency pair. If you have an account at any two of these exchanges, theoretically you could transfer some of this currency from the exchange with the higher price to the exchange with the lower price to take advantage of an arbitrage opportunity.</p>
+        </div>
         {this.renderChart(data)}
       </div>
     )
