@@ -1,6 +1,6 @@
 export const fetchArticles = params => {
   let url = "https://min-api.cryptocompare.com/data/news/?";
-  
+
   if (params) {
     for (let i = 0; i < params.length; i++) {
       url += params[i];

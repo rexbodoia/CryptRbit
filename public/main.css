@@ -11,6 +11,10 @@
   text-decoration: none;
 }
 
+.news-feed-title {
+  padding-left: 40px;
+}
+
 ul {
   list-style: none;
 }

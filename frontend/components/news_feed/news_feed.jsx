@@ -6,16 +6,28 @@ export default class NewsFeed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      params: '',
+      params: [],
       currentPage: 0,
-      articlesPerPage: 10
+      articlesPerPage: 10,
+      filterType: '',
+      filterValue: ''
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
+    this.setFilter = this.setFilter.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchArticles(this.state.params);
+    let { newsArticles } = this.props;
+    const { filterType, filterValue } = this.state;
+
+    if (!filterType || !filterValue) this.props.fetchArticles(this.state.params.concat(this.props.coinPair));
+
+    if (filterType === 'Exchange') {
+      this.props.fetchArticles(this.state.params.concat(`${this.props.coinPair},${this.state.filterValue}`));
+    } else if (filterType === 'News Source') {
+      this.props.fetchArticles(this.state.params.concat(this.props.coinPair, `source=${this.state.filterValue}`));
+    }
   }
 
   handleNavChange(e) {
@@ -32,7 +44,7 @@ export default class NewsFeed extends React.Component {
     for (let i = 0; i < pageCount; i++) {
       i === this.state.currentPage ? className="active" : className="";
       pageNavs.push(
-        <li className={className} onClick={this.handleNavChange}>
+        <li key={i} className={className} onClick={this.handleNavChange}>
           <a href="">{i}</a>
         </li>
       );
@@ -46,6 +58,55 @@ export default class NewsFeed extends React.Component {
     )
   }
 
+  setFilter(e) {
+    e.preventDefault();
+    this.setState({filterType: e.target.innerText});
+  }
+
+  filterDropdown() {
+    return (
+      <div className="dropdown">
+        <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter by
+          <span className="caret"></span>
+        </button>
+        <ul className="dropdown-menu">
+          <li><a onClick={this.setFilter} href="">Exchange</a></li>
+          <li><a onClick={this.setFilter} href="">News Source</a></li>
+          <li><a onClick={this.setFilter} href="">Tag</a></li>
+        </ul>
+      </div>
+    );
+  }
+
+  handleInput(property) {
+    return e => this.setState({[property]: e.target.value})
+  }
+
+  filterInput() {
+    let placeholder;
+    this.state.filterType ? placeholder = `Enter ${this.state.filterType.toLowerCase()}` : placeholder = '';
+    return (
+      <input 
+        placeholder={placeholder} 
+        value={this.state.filterValue} 
+        onChange={this.handleInput('filterValue')}>
+      </input>
+    );
+  }
+
+  filteredArticles() {
+    let {newsArticles} = this.props;
+    const {filterType, filterValue} = this.state;
+
+    if (!filterType || !filterValue) return Object.values(newsArticles);
+
+    if (filterType === 'Exchange') {
+      this.props.fetchArticles(this.state.params.concat(`${this.props.coinPair},${this.state.filterValue}`));
+    } else if (filterType === 'News Source') {
+      this.props.fetchArticles(this.state.params.concat(this.props.coinPair, `source=${this.state.filterValue}`));
+    }
+  }
+
   render() {
     if (!this.props.newsArticles) return 'Loading...';
 
@@ -54,6 +115,9 @@ export default class NewsFeed extends React.Component {
 
     return (
       <div className="col-md-7">
+        <h1 className="news-feed-title">News Feed</h1>
+        {this.filterDropdown()}
+        {this.filterInput()}
         <ul className="card-group">
           {Object.values(this.props.newsArticles)
             .slice(startIdx, startIdx + articlesPerPage)

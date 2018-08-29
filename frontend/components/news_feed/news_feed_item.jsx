@@ -19,7 +19,7 @@ export default class NewsFeedItem extends React.Component {
             <h4 className="media-heading">{article.title}</h4>
           </a>
           <p className="card-text" dangerouslySetInnerHTML={{__html: (article.body.slice(0, 300).concat("...")).replace(/[\[\]]/g, '')}}></p>
-          {/* <span className="card-footer">{article.tags.split("|").slice(0, 6).join(" | ")}</span> */}
+          <span className="card-footer">{article.tags.split("|").slice(0, 6).join(" | ")}</span>
         </div>
       </li>
     );
