@@ -10,7 +10,7 @@ export default class NewsFeedItem extends React.Component {
   render() {
     const {article} = this.props;
     return (
-      <li className="row top-buffer">
+      <li className="row">
         <a target="_blank" href={article.url}>
           <img className="col-md-3"src={article.imageurl}></img>
         </a>
