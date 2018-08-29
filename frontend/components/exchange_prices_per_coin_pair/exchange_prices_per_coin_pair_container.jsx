@@ -3,6 +3,7 @@ import ExchangePricesPerCoinPair from './exchange_prices_per_coin_pair';
 import { fetchExchangePricesPerCoinPair } from '../../actions/exchange_prices_per_coin_pair_actions';
 
 const mapStateToProps = state => ({
+  coinPair: state.entities.coinPair,
   data: state.entities.exchangePricesPerCoinPair
 });
 
