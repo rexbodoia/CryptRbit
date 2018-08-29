@@ -23,7 +23,7 @@
 .byebug_history
 
 bundle.js
-bundle.map.js
+bundle.js.map
 .byebug_history
 .DS_store
 npm-debug.log
