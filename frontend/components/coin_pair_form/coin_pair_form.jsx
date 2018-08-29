@@ -24,6 +24,7 @@ class CoinPairForm extends React.Component {
     let fsym = this.state.fsym;
     let tsym = this.state.tsym;
     this.props.changeCoinPair(fsym, tsym);
+    this.props.fetchPrices(fsym, tsym, 5);
   }
 
   render() {
