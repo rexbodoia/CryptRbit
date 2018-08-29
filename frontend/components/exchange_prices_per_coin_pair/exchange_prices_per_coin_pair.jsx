@@ -17,6 +17,15 @@ class ExchangePricesPerCoinPair extends React.Component {
     this.props.fetchPrices(coins.fsym, coins.tsym, 5);
   }
 
+  componentWillReceiveProps(newProps) {
+    let oldCoins = this.props.coinPair;
+    let newCoins = newProps.coinPair;
+    
+    if (oldCoins.fsym != newCoins.fsym || oldCoins.tsym != newCoins.tsym) {
+      this.props.fetchPrices(newCoins.fsym, newCoins.tsym, 5);
+    }
+  }
+
   twoDecimalify(data) {
     return data.map(datum => {
       let obj = {};

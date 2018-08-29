@@ -10,10 +10,7 @@ const coinPairReducer = (state = {fsym: 'BTC', tsym: 'USD'}, action) => {
         tsym: action.tsym
       }
     default:
-      return {
-        fsym: 'BTC',
-        tsym: 'USD'
-      }
+    return state;
   }
 }
 

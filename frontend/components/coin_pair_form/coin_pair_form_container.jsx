@@ -8,8 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeCoinPair: (fsym, tsym) => dispatch(changeCoinPair(fsym, tsym)),
-  fetchPrices: (fsym, tsym, limit) => dispatch(fetchExchangePricesPerCoinPair(fsym, tsym, limit))
+  changeCoinPair: (fsym, tsym) => dispatch(changeCoinPair(fsym, tsym))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoinPairForm);
