@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as APIUtil from './api_utils/session_api_util';
-import jwt-decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //set up the header with the token
     APIUtil.setAuthToken(localStorage.jwtToken);
     //Decode token and access the user's info 
-    const decoded = jwt_decode(localStorage.jwtToken);
+    const decoded = jwtDecode(localStorage.jwtToken);
     //Set the user (? and 'isAuthenticated')
     store.dispatch(APIUtil.setCurrentUser(decoded));
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.setAuthToken = APIUtil.setAuthToken;
   window.setCurrentUser = APIUtil.setCurrentUser;
   window.logoutUser = APIUtil.logoutUser;
-  window.jwt_decode = jwt_decode;
+  window.jwtDecode = jwtDecode;
   window.login = APIUtil.loginUser;
   window.register = APIUtil.registerUser;
 });

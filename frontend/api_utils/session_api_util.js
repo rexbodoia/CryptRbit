@@ -1,6 +1,7 @@
 import axios from 'axios';
 //linter error for this import, not sure why
-import jwt-decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
+// var jwtDecode = require('jwt-decode');
 
 const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
@@ -39,7 +40,7 @@ export const loginUser = userData => dispatch => {
             // Set token to Auth header
             setAuthToken(token);
             // Decode token to get user data
-            const decoded = jwt_decode(token);
+            const decoded = jwtDecode(token);
             // Set current user
             dispatch(setCurrentUser(decoded));
         }).catch(err =>
