@@ -13,8 +13,9 @@ const sessionReducer = (state = _nullUser, action ) => {
         return {
             id: action.payload.id,
             //handle comes in the decoded playload? not certain
-            handle: action.payload.handle,
-            email: action.payload.email
+            coin: action.payload.coin,
+            newsSource: action.payload.newsSource,
+            exchange: action.payload.exchange
         };
         default:
            return state;
