@@ -30,8 +30,8 @@ class ExchangePricesPerCoinPair extends React.Component {
   twoDecimalify(data) {
     return data.map(datum => {
       let obj = {};
-      obj['market'] = datum["MARKET"];
-      obj['price'] = parseFloat(datum["PRICE"].toFixed(2));
+      obj["MARKET"] = datum["MARKET"];
+      obj["PRICE"] = parseFloat(datum["PRICE"].toFixed(2));
       return obj;
     });
   }
@@ -39,20 +39,15 @@ class ExchangePricesPerCoinPair extends React.Component {
   renderChart(data) {
     if (data.length > 0) {
       return (
-        <div className="row">
-          <div className="col-md-2" style={{ height: 400 }}>
-          </div>
-          <ResponsiveContainer width="75%" height={400} className="col-md-9">
-            <BarChart width={730} height={400} data={data}>
+          <div className="container-fluid">
+            <BarChart margin={{ left: 20 }} width={900} height={400} data={data}>
               <XAxis dataKey="MARKET" />
               <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
               <Tooltip />
               <Legend />
               <Bar dataKey="PRICE" fill="#8884d8" />
             </BarChart>
-          </ResponsiveContainer>
-          <div className="col-md-1" style={{ height: 400 }}></div>
-        </div>
+          </div>
       );
     } else {
       return (
@@ -69,7 +64,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   }
 
   render() {
-    const data = this.props.data;
+    const data = this.twoDecimalify(this.props.data);
     return (
       <div>
         <div className="jumbotron jumbotron-fluid arbitrage-heading p-5">
