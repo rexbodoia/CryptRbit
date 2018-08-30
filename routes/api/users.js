@@ -8,7 +8,7 @@ const keys = require('../../config/keys');
 
 const router = express.Router();
 
-//currently not using this route
+// currently not using this route
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
     id: req.user.id,
@@ -19,13 +19,18 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 router.patch("/prefs",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    // console.log(req.body);
     const id = req.body.id;
     const prefs = {};
     prefs.coin = req.body.coin;
-    prefs.newsSource = req.body.newsSource;
+    prefs.news = req.body.newsSource;
     prefs.exchange = req.body.exchange;
-
-    db.users.findOneAndUpdate({id: id}, {$set:{prefs: prefs}}).then(user => res.json(user));
+    // console.log(prefs)
+    const user = User.findById(id);
+    // console.log(user);
+    const updated =  User.findOneAndUpdate({_id: id}, {$set:{prefs: prefs}}, {new: true}).then(user => res.json(user));
+    // console.log(res.body)
+    
       
   }
 );
@@ -70,6 +75,7 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
+            console.log(user.prefs);
             const payload = {id: user.id, prefs: user.prefs};
 
             jsonwebtoken.sign(

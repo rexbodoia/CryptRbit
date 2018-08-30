@@ -1,6 +1,10 @@
 import {
     RECEIVE_CURRENT_USER,
 } from '../api_utils/session_api_util';
+import {
+    RECEIVE_USER_PREFS,
+} from '../api_utils/preferences_api_util';
+import {merge} from 'lodash';
 
 const _nullUser = Object.freeze({
     id: null
@@ -17,6 +21,11 @@ const sessionReducer = (state = _nullUser, action ) => {
             newsSource: action.payload.newsSource,
             exchange: action.payload.exchange
         };
+        case RECEIVE_USER_PREFS:
+        return    merge({}, state, { coin: action.payload.data.prefs.coin,
+            newsSource: action.payload.data.prefs.news,
+            exchange: action.payload.data.prefs.exchange,
+        })
         default:
            return state;
     }
