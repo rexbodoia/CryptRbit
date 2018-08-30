@@ -69,7 +69,7 @@ export default class NewsFeed extends React.Component {
       <ul className="dropdown-menu">
         {newsCategories.map(category => (
           <li key={category.categoryName}>
-            <a id={category.categoryName} href="" onClick={this.setCategory}>
+            <a className="undo-link-style" id={category.categoryName} href="" onClick={this.setCategory}>
               {category.wordsAssociatedWithCategory[1]}
             </a>
           </li>
@@ -98,7 +98,7 @@ export default class NewsFeed extends React.Component {
       <ul className="dropdown-menu">
         {newsSources.map(source => (
           <li key={source.key}>
-            <a id={source.key} href="" onClick={this.setNewsSource}>
+            <a className="undo-link-style" id={source.key} href="" onClick={this.setNewsSource}>
               {source.name}
             </a>
           </li>
@@ -112,7 +112,7 @@ export default class NewsFeed extends React.Component {
     const startIdx = currentPage * articlesPerPage;
 
     return (
-      <div className="col-12">
+      <div className="col-10">
         <div className="row">
           <h1 className="news-feed-title">News Feed</h1>
           {this.filterCategory()}
