@@ -28,23 +28,21 @@ class CoinPairForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} className="padding-20">
+      <form onSubmit={this.handleSubmit} className="p-2 w-100">
 
-          <div className="row" align="center">
-            <div className="col-1"></div>
-            <label className="col-4">From-Currency:
-              <input placeholder=" BTC" onChange={this.update('fsym')} className="ml-3"></input>
-            </label>
+        <div className="row" align="center">
+          <div className="col-1"></div>
+          <label className="col-4">From-Currency:
+            <input placeholder=" BTC" onChange={this.update('fsym')} className="ml-3"></input>
+          </label>
 
-            <label className="col-4">To-Currency:
-              <input placeholder=" USD" onChange={this.update('tsym')} className="ml-3"></input>
-            </label>
+          <label className="col-4">To-Currency:
+            <input placeholder=" USD" onChange={this.update('tsym')} className="ml-3"></input>
+          </label>
 
-            <input type="submit" value="View Currency Pair" className="col-2"></input>
-          </div>
-        </form>
-      </div>
+          <input type="submit" value="View Currency Pair" className="col-2"></input>
+        </div>
+      </form>
     );
   }
 }
