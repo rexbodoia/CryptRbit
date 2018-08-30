@@ -16,7 +16,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   });
 })
 
-// Register route
+// Register route, do we respond with a session token?
 router.post('/register', (req, res) => {
   User.findOne({ email: req.body.email })
     .then(user => {
