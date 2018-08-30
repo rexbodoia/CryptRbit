@@ -1,5 +1,4 @@
 import axios from 'axios';
-//linter error for this import, not sure why
 import jwtDecode from 'jwt-decode';
 // var jwtDecode = require('jwt-decode');
 
