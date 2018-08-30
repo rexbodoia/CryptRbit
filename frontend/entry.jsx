@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as APIUtil from './api_utils/session_api_util';
+import * as PrefsAPI from './api_utils/preferences_api_util';
 import jwtDecode from 'jwt-decode';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const decoded = jwtDecode(localStorage.jwtToken);
     //Set the user (? and 'isAuthenticated')
     store.dispatch(APIUtil.setCurrentUser(decoded));
-
+    store.dispatch(PrefsAPI.getPrefs());
     //check for expired token
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
@@ -41,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.jwtDecode = jwtDecode;
   window.login = APIUtil.loginUser;
   window.register = APIUtil.registerUser;
+  window.setPrefs = PrefsAPI.setPrefs;
+  window.getPrefs = PrefsAPI.getPrefs;
 });
 
 //online example imports and calls 'registerServiceWorker' but no explanation, so left it out
