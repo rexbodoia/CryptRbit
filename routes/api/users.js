@@ -8,13 +8,32 @@ const keys = require('../../config/keys');
 
 const router = express.Router();
 
+// currently not using this route
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
     id: req.user.id,
-    username: req.user.name,
-    email: req.user.email 
+    prefs: req.user.prefs
   });
 })
+
+router.patch("/prefs",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // console.log(req.body);
+    const id = req.body.id;
+    const prefs = {};
+    prefs.coin = req.body.coin;
+    prefs.news = req.body.newsSource;
+    prefs.exchange = req.body.exchange;
+    // console.log(prefs)
+    const user = User.findById(id);
+    // console.log(user);
+    const updated =  User.findOneAndUpdate({_id: id}, {$set:{prefs: prefs}}, {new: true}).then(user => res.json(user));
+    // console.log(res.body)
+    
+      
+  }
+);
 
 // Register route, do we respond with a session token?
 router.post('/register', (req, res) => {
@@ -56,7 +75,8 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            const payload = {id: user.id, username: user.username};
+            console.log(user.prefs);
+            const payload = {id: user.id, prefs: user.prefs};
 
             jsonwebtoken.sign(
               payload,
