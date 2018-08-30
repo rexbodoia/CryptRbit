@@ -5,7 +5,7 @@ import { fetchExchangePricesPerCoinPair } from '../../actions/exchange_prices_pe
 
 const mapStateToProps = state => ({
   coinPair: state.entities.coinPair,
-  preferences: state.session.preferences
+  // preferences: state.session.preferences
 });
 
 const mapDispatchToProps = dispatch => ({

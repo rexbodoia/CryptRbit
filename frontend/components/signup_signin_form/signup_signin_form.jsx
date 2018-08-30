@@ -54,22 +54,22 @@ class SignupSigninForm extends React.Component {
     return (
       <form className="form-inline" onSubmit={this.handleSubmit('signin')}>
         <label className="sr-only" htmlFor="inlineFormInputName2">Name</label>
-        <input type="email" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="email" />
+        <input type="email" className="form-control my-2 mr-sm-2" id="inlineFormInputName2" placeholder="email" />
 
         <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Username</label>
-        <div className="input-group mb-2 mr-sm-2">
+        <div className="input-group my-2 mr-sm-2">
           <input type="password" className="form-control" id="inlineFormInputGroupUsername2" placeholder="password" />
         </div>
 
-        <button type="submit" className="btn btn-primary mb-2">Sign In</button>
+        <button type="submit" className="btn btn-primary my-2">Sign In</button>
       </form>
     );
   }
 
   render() {
     return (
-      <nav className="navbar navbar-light bg-light justify-content-between">
-        <a className="navbar-brand">CryptRbit</a>
+      <nav className="navbar navbar-light bg-dark justify-content-between w-100 pt-2 mb-5">
+        <a className="navbar-brand" style={{ color: "white", fontSize: 28 }}>CryptRbit</a>
         {this.renderSignin()}
       </nav>
     );

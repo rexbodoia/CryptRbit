@@ -41,7 +41,7 @@ class ExchangePricesPerCoinPair extends React.Component {
         <div className="row" style={{ width: 1440 }}>
           <div className="col-2"></div>
           <div className="col-9 mx-auto">
-            <BarChart width={900} height={400} data={data}>
+            <BarChart margin={{ left: 20 }} width={900} height={400} data={data}>
               <XAxis dataKey="MARKET" />
               <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
               <Tooltip />

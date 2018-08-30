@@ -5,8 +5,10 @@ class CoinPairForm extends React.Component {
     super(props);
 
     this.state = {
-      fsym: props.preferences.fsym || props.coinPair.tsym,
-      tsym: props.preferences.fsym || props.coinPair.tsym
+      // fsym: props.preferences.fsym || props.coinPair.tsym,
+      // tsym: props.preferences.fsym || props.coinPair.tsym
+      fsym: '',
+      tsym: ''
     }
 
     this.update = this.update.bind(this);
