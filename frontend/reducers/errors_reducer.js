@@ -1,15 +1,10 @@
-import { RESPONSE_ERROR } from '../actions/exchange_prices_per_coin_pair_actions';
+import { combineReducers } from 'redux';
+import exchangeErrorsReducer from './exchange_errors_reducer';
+import sessionErrorsReducer from './session_errors_reducer';
 
-import { merge } from 'lodash';
-
-const errorsReducer = (state = {}, action) => {
-  Object.freeze(state);
-  switch (action.type) {
-    case RESPONSE_ERROR:
-      return merge({}, state, action.error);
-    default:
-      return state;
-  }
-};
+const errorsReducer = combineReducers({
+    exchange_errors: exchangeErrorsReducer,
+    session_errors: sessionErrorsReducer,
+});
 
 export default errorsReducer;
