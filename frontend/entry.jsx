@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as APIUtil from './api_utils/session_api_util';
+import jwt-decode from 'jwt-decode';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();
@@ -30,6 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
+
+  //testing
+  window.dispatch = store.dispatch;
+  window.getState = store.getState;
+  window.setAuthToken = APIUtil.setAuthToken;
+  window.setCurrentUser = APIUtil.setCurrentUser;
+  window.logoutUser = APIUtil.logoutUser;
+  window.jwt_decode = jwt_decode;
+  window.login = APIUtil.loginUser;
+  window.register = APIUtil.registerUser;
 });
 
 //online example imports and calls 'registerServiceWorker' but no explanation, so left it out
