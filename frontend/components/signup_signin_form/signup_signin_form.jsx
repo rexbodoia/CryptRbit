@@ -20,13 +20,23 @@ class SignupSigninForm extends React.Component {
     }
   }
 
-  handleSubmit(e) {
+  handleSubmit(action) {
+    return (e) => {
+      e.preventDefault();
+      let email = this.state.email;
+      let password = this.state.password;
 
+      if (action == 'signup') {
+        this.props.registerUser(email, password);
+      } else {
+        this.props.loginUser(email, password);
+      }
+    }
   }
 
   renderSignup() {
     return (
-      <form class="form-inline">
+      <form class="form-inline" onSubmit={this.handleSubmit('signup')}>
         <div class="form-group mb-2">
           <label for="staticEmail2" class="sr-only">Email</label>
           <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com" />
@@ -42,7 +52,7 @@ class SignupSigninForm extends React.Component {
 
   renderSignin() {
     return (
-      <form class="form-inline">
+      <form class="form-inline" onSubmit={this.handleSubmit('signin')}>
         <label class="sr-only" for="inlineFormInputName2">Name</label>
         <input type="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="email" />
 
@@ -56,14 +66,11 @@ class SignupSigninForm extends React.Component {
     );
   }
 
-  renderForm() {
-  }
-
   render() {
     return (
       <nav class="navbar navbar-light bg-light justify-content-between">
         <a class="navbar-brand">Navbar</a>
-        {this.renderForm()}
+        {this.renderSignin()}
       </nav>
     );
   }
