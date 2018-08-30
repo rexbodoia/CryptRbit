@@ -5,11 +5,16 @@ import DonutChartContainer from './donut_chart/donut_chart_container';
 import SignupSigninFormContainer from './signup_signin_form/signup_signin_form_container';
 import CoinPairFormContainer from './coin_pair_form/coin_pair_form_container';
 import NewsFeedContainer from './news_feed/news_feed_container';
+import PreferencesModalContainer from './preferences_modal/preferences_modal_container';
 
 const App = () => (
     <div className='container-fluid'>
       <div className="row">
         <SignupSigninFormContainer />
+      </div>
+      <div className="row">
+        <div className="col-10"></div>
+        <PreferencesModalContainer />
       </div>
       <div className="row">
         <CoinPairFormContainer />

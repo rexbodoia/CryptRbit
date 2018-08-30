@@ -38,9 +38,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   renderChart(data) {
     if (data.length > 0) {
       return (
-        <div className="row" style={{ width: 1440 }}>
-          <div className="col-2"></div>
-          <div className="col-9 mx-auto">
+          <div className="container-fluid">
             <BarChart margin={{ left: 20 }} width={900} height={400} data={data}>
               <XAxis dataKey="MARKET" />
               <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
@@ -49,8 +47,6 @@ class ExchangePricesPerCoinPair extends React.Component {
               <Bar dataKey="PRICE" fill="#8884d8" />
             </BarChart>
           </div>
-          <div className="col-1" style={{ height: 400 }}></div>
-        </div>
       );
     } else {
       return (

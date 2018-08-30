@@ -68,7 +68,7 @@ class SignupSigninForm extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light bg-dark justify-content-between w-100 pt-2 mb-5">
+      <nav className="navbar navbar-light bg-dark justify-content-between w-100 pt-2 border-bottom" style={{ borderColor: "rgb(150,150,150)"}}>
         <a className="navbar-brand" style={{ color: "white", fontSize: 28 }}>CryptRbit</a>
         {this.renderSignin()}
       </nav>
