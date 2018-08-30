@@ -15,6 +15,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   componentDidMount() {
     let coins = this.props.coinPair;
     this.props.fetchPrices(coins.fsym, coins.tsym, 5);
+    this.props.fetchTopCoinPairs();
   }
 
   componentWillReceiveProps(newProps) {

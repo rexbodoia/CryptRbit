@@ -4,3 +4,10 @@ export const fetchExchangePricesPerCoinPair = (fsym, tsym, limit) => (
     method: 'GET'
   })
 );
+
+export const fetchTopCoinPairs = () => (
+  $.ajax({
+    url: `https://min-api.cryptocompare.com/data/top/volumes?tsym=BTC&limit=50`,
+    method: 'GET'
+  })
+);
