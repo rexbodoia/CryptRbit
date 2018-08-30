@@ -40,16 +40,14 @@ class ExchangePricesPerCoinPair extends React.Component {
       return (
         <div className="row" style={{ width: 1440 }}>
           <div className="col-2"></div>
-          <div className="col-12">
-            <ResponsiveContainer width="90%" height={400}>
-              <BarChart width="90%" height={400} data={data}>
-                <XAxis dataKey="MARKET" />
-                <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="PRICE" fill="#8884d8" />
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="col-9 mx-auto">
+            <BarChart width={900} height={400} data={data}>
+              <XAxis dataKey="MARKET" />
+              <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="PRICE" fill="#8884d8" />
+            </BarChart>
           </div>
           <div className="col-1" style={{ height: 400 }}></div>
         </div>

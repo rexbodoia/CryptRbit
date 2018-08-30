@@ -36,40 +36,40 @@ class SignupSigninForm extends React.Component {
 
   renderSignup() {
     return (
-      <form class="form-inline" onSubmit={this.handleSubmit('signup')}>
-        <div class="form-group mb-2">
-          <label for="staticEmail2" class="sr-only">Email</label>
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com" />
+      <form className="form-inline" onSubmit={this.handleSubmit('signup')}>
+        <div className="form-group mb-2">
+          <label htmlFor="staticEmail2" className="sr-only">Email</label>
+          <input type="text" readonly className="form-control-plaintext" id="staticEmail2" value="email@example.com" />
         </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="inputPassword2" class="sr-only">Password</label>
-          <input type="password" class="form-control" id="inputPassword2" placeholder="Password" />
+        <div className="form-group mx-sm-3 mb-2">
+          <label htmlFor="inputPassword2" className="sr-only">Password</label>
+          <input type="password" className="form-control" id="inputPassword2" placeholder="Password" />
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Sign Up</button>
+        <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
       </form>
     );
   }
 
   renderSignin() {
     return (
-      <form class="form-inline" onSubmit={this.handleSubmit('signin')}>
-        <label class="sr-only" for="inlineFormInputName2">Name</label>
-        <input type="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="email" />
+      <form className="form-inline" onSubmit={this.handleSubmit('signin')}>
+        <label className="sr-only" htmlFor="inlineFormInputName2">Name</label>
+        <input type="email" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="email" />
 
-        <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-        <div class="input-group mb-2 mr-sm-2">
-          <input type="password" class="form-control" id="inlineFormInputGroupUsername2" placeholder="password" />
+        <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Username</label>
+        <div className="input-group mb-2 mr-sm-2">
+          <input type="password" className="form-control" id="inlineFormInputGroupUsername2" placeholder="password" />
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2">Sign In</button>
+        <button type="submit" className="btn btn-primary mb-2">Sign In</button>
       </form>
     );
   }
 
   render() {
     return (
-      <nav class="navbar navbar-light bg-light justify-content-between">
-        <a class="navbar-brand">Navbar</a>
+      <nav className="navbar navbar-light bg-light justify-content-between">
+        <a className="navbar-brand">Navbar</a>
         {this.renderSignin()}
       </nav>
     );
