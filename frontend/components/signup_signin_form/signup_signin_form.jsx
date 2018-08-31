@@ -27,12 +27,10 @@ class SignupSigninForm extends React.Component {
 
   signinUser(e) {
     e.persist();
-    let username = this.state.username;
     let email = this.state.email;
     let password = this.state.password;
-    let password2 = this.state.password2;
 
-    this.props.loginUser(username, email, password, password2);
+    this.props.loginUser(email, password);
   }
 
   signupUser(e) {
@@ -51,7 +49,7 @@ class SignupSigninForm extends React.Component {
         <input type="email" className="form-control my-2 mr-sm-2" placeholder="email" onChange={this.update('email')} />
 
         <div className="input-group my-2 mr-sm-2">
-          <input type="password" className="form-control" placeholder=" confirm password" onChange={this.update('password2')} />
+          <input type="password" className="form-control" placeholder=" confirm password" onChange={this.update('password')} />
         </div>
 
         <button onClick={this.signinUser} className="btn btn-primary my-2">Sign In</button>
