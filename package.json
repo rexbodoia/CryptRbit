@@ -9,10 +9,14 @@
     "frontend": "npm start --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development",
-    "server": "nodemon app.js",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "server": "nodemon app.js", 
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "postinstall": "webpack --mode=production"
   },
   "keywords": [],
+  "engines": {
+    "node": "8.9.0"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
