@@ -29,7 +29,7 @@ class SignupSigninForm extends React.Component {
     let password = this.state.password;
     let password2 = this.state.password2;
 
-    this.props.loginUser(username, email, password, password2s);
+    this.props.loginUser(username, email, password, password2);
   }
 
   signupUser(e) {
@@ -79,7 +79,7 @@ class SignupSigninForm extends React.Component {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary" onClick={this.signupUser}>Save changes</button>
+                <button type="button" className="btn btn-primary" onClick={this.signupUser} data-dismiss="modal">Save changes</button>
               </div>
             </div>
           </div>
