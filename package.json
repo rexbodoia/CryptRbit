@@ -11,7 +11,8 @@
     "start": "webpack --watch --mode=development",
     "server": "nodemon app.js", 
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-    "postinstall": "webpack --mode=production"
+    "postinstall": "webpack --mode=production",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "engines": {
