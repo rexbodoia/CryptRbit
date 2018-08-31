@@ -15,7 +15,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   componentDidMount() {
     let coins = this.props.coinPair;
     this.props.fetchPrices(coins.fsym, coins.tsym, 5);
-    this.props.fetchTopCoinPairs();
+    this.props.fetchTopCoinPairs()
   }
 
   componentWillReceiveProps(newProps) {
@@ -24,6 +24,15 @@ class ExchangePricesPerCoinPair extends React.Component {
 
     if (oldCoins.fsym != newCoins.fsym || oldCoins.tsym != newCoins.tsym) {
       this.props.fetchPrices(newCoins.fsym, newCoins.tsym, 5);
+    }
+
+    const tsym = newCoins.tsym || 'USD';
+    if (Object.keys(this.props.topCoins).length !== Object.keys(newProps.topCoins).length) {
+      for (let i = 0; i < Object.keys(newProps.topCoins).length; i++) {
+        setTimeout(() => {
+          this.props.fetchPrices(newProps.topCoins[i].SYMBOL, tsym, 100)
+        }, 25);
+      }
     }
   }
 
