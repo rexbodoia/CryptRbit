@@ -20,6 +20,7 @@ export const setAuthToken = token => {
 
 //deleted out history argument, as not used
 export const registerUser = (userData) => dispatch => {
+  console.log(userData);
   axios.post('/api/users/register', userData).catch(err =>
       dispatch({
           type: GET_ERRORS,
