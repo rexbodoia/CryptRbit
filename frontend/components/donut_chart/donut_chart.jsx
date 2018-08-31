@@ -76,8 +76,8 @@ class DonutChart extends React.Component {
     }
 
     render() {
-        let data = this.state.chartData || [];
-        
+        let data = this.props.chartData || [];
+        console.log(data);
         return (
             <div className="mx-auto w-75 py-3 mb-5">
               <h1 className="display-3 text-center">Top Exchanges by Volume</h1>
