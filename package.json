@@ -11,8 +11,7 @@
     "start": "webpack --watch --mode=development",
     "server": "node app.js", 
     "dev": "concurrently \"npm run server\" \"npm run frontend\"", 
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "postinstall": "webpack"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "engines": {
