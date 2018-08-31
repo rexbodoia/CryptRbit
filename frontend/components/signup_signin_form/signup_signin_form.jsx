@@ -5,13 +5,15 @@ class SignupSigninForm extends React.Component {
     super(props);
 
     this.state = {
-      action: 'signup',
+      username: '',
       email: '',
-      password: ''
+      password1: '',
+      password2: ''
     }
 
     this.update = this.update.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.signinUser = this.signinUser.bind(this);
+    this.signupUser = this.signupUser.bind(this);
   }
 
   update(field) {
@@ -20,48 +22,47 @@ class SignupSigninForm extends React.Component {
     }
   }
 
-  handleSubmit(action) {
-    return (e) => {
-      e.preventDefault();
-      let email = this.state.email;
-      let password = this.state.password;
+  signinUser(e) {
+    e.persist();
+    let username = this.state.username;
+    let email = this.state.email;
+    let password1 = this.state.password1;
+    let password2 = this.state.password2;
 
-      if (action == 'signup') {
-        this.props.registerUser(email, password);
-      } else {
-        this.props.loginUser(email, password);
-      }
-    }
+    this.props.loginUser({ username, email, password1, password2 });
   }
 
-  renderSignup() {
-    return (
-      <form className="form-inline" onSubmit={this.handleSubmit('signup')}>
-        <div className="form-group mb-2">
-          <label htmlFor="staticEmail2" className="sr-only">Email</label>
-          <input type="text" readonly className="form-control-plaintext" id="staticEmail2" value="email@example.com" />
-        </div>
-        <div className="form-group mx-sm-3 mb-2">
-          <label htmlFor="inputPassword2" className="sr-only">Password</label>
-          <input type="password" className="form-control" id="inputPassword2" placeholder="Password" />
-        </div>
-        <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
-      </form>
-    );
+  signupUser(e) {
+    e.persist();
+    console.log(this.state);
+    let username = this.state.username;
+    let email = this.state.email;
+    let password1 = this.state.password1;
+    let password2 = this.state.password2;
+
+    this.props.registerUser({ username, email, password1, password2 });
   }
 
-  renderSignin() {
+  renderForm() {
     return (
-      <form className="form-inline" onSubmit={this.handleSubmit('signin')}>
-        <label className="sr-only" htmlFor="inlineFormInputName2">Name</label>
-        <input type="email" className="form-control my-2 mr-sm-2" id="inlineFormInputName2" placeholder="email" />
+      <form className="form-inline">
+        <input type="text" className="form-control my-2 mr-sm-2" placeholder="username" onChange={this.update('username')} />
 
-        <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Username</label>
         <div className="input-group my-2 mr-sm-2">
-          <input type="password" className="form-control" id="inlineFormInputGroupUsername2" placeholder="password" />
+          <input type="email" className="form-control" placeholder="email" onChange={this.update('email')} />
         </div>
 
-        <button type="submit" className="btn btn-primary my-2">Sign In</button>
+        <div className="input-group my-2 mr-sm-2">
+          <input type="password" className="form-control" placeholder="password" onChange={this.update('password1')} />
+        </div>
+
+        <div className="input-group my-2 mr-sm-2">
+          <input type="password" className="form-control" placeholder=" confirm password" onChange={this.update('password2')} />
+        </div>
+
+        <button onClick={this.signinUser} className="btn btn-primary my-2">Sign In</button>
+
+        <button onClick={this.signupUser} className="btn btn-primary my-2 ml-2">Create Account</button>
       </form>
     );
   }
@@ -70,7 +71,7 @@ class SignupSigninForm extends React.Component {
     return (
       <nav className="navbar navbar-light bg-dark justify-content-between w-100 pt-2 border-bottom" style={{ borderColor: "rgb(150,150,150)"}}>
         <a className="navbar-brand" style={{ color: "white", fontSize: 28 }}>CryptRbit</a>
-        {this.renderSignin()}
+        {this.renderForm()}
       </nav>
     );
   }
