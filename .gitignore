@@ -22,8 +22,8 @@
 /public/assets
 .byebug_history
 
-/public/bundle.js
-/public/bundle.js.map
+# /public/bundle.js
+# /public/bundle.js.map
 .byebug_history
 .DS_store
 npm-debug.log
