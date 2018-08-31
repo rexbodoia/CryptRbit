@@ -2,24 +2,47 @@ import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Label } from 'recharts';
 import { ClipLoader } from "react-spinners";
 
+// { chartData: setChartData(data.exchangesData, data.totalData),
+//         coinPair: state.entities.coinPair,
+//             coinPref: state.session.coin } 
+
 const COLORS = [
     "#6B8E23", "#556B2F", "#66CDAA", "#8FBC8F", "#20B2AA", "#008B8B"
 ];
 
 class DonutChart extends React.Component {
     constructor() {
-        super ()
+        super ();
+        this.state = {
+        }
     }
 
     componentDidMount() {
-        this.props.getExchanges("BTC", "USD");
-        this.props.getTotal("USD");
+        // console.log("before", this.state); 
+        this.props.getExchanges();
+        this.props.getTotal();
+        this.setState({
+          coinPref: this.props.coinPref,
+          coinPair: this.props.coinPair,
+          chartData: this.props.chartData
+        });
+        // console.log("after", this.state);
+    }
+
+    componentWillReceiveProps (nextProps) {
+        if (this.props.coinPair.fsym !== nextProps.coinPair.fsym || this.props.coinPair.tsym !== nextProps.coinPair.tsym) {
+          this.setState({ coinPair: nextProps.coinPair });
+          this.props.getExchanges(this.state.coinPair.fsym, this.state.coinPair.tsym);
+          this.props.getTotal(this.state.coinPair.tsym);
+        }
     }
 
 
 
     renderChart (data) {
-        if (data) {
+        // console.log("render chart", this.state);
+        if (data.length > 0) {
+            // console.log("chart branch")
             return (
                 <ResponsiveContainer width="100%" height={600}>
                   <PieChart >
@@ -53,7 +76,8 @@ class DonutChart extends React.Component {
     }
 
     render() {
-        const data = this.props.chartData
+        let data = this.state.chartData || [];
+        
         return (
             <div className="mx-auto w-75 py-3 mb-5">
               <h1 className="display-3 text-center">Top Exchanges by Volume</h1>
