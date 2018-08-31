@@ -14,6 +14,9 @@ class SignupSigninForm extends React.Component {
     this.update = this.update.bind(this);
     this.signinUser = this.signinUser.bind(this);
     this.signupUser = this.signupUser.bind(this);
+    this.renderLogout = this.renderLogout.bind(this);
+    this.renderNav = this.renderNav.bind(this);
+    this.logoutUser = this.logoutUser.bind(this);
   }
 
   update(field) {
@@ -114,11 +117,40 @@ class SignupSigninForm extends React.Component {
     );
   }
 
+  renderLogout() {
+    return (
+      <div>
+        <button className="btn btn-warning" onClick={this.logoutUser}>Logout</button>
+      </div>
+    );
+  }
+
+  logoutUser(e) {
+    e.persist();
+    this.props.logoutUser();
+  }
+
+  renderNav() {
+    if (this.props.id) {
+      return (
+        <div>
+          {this.renderLogout()}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {this.renderSignin()}
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <nav className="navbar navbar-light bg-dark justify-content-between w-100 pt-2 border-bottom" style={{ borderColor: "rgb(150,150,150)"}}>
         <a className="navbar-brand" style={{ color: "white", fontSize: 28 }}>CryptRbit</a>
-        {this.renderSignin()}
+        {this.renderNav()}
       </nav>
     );
   }
