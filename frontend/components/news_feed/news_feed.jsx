@@ -112,7 +112,7 @@ export default class NewsFeed extends React.Component {
     const startIdx = currentPage * articlesPerPage;
 
     return (
-      <div className="col-10">
+      <div className="col-8">
         <div className="row">
           <h1 className="news-feed-title">News Feed</h1>
           {this.filterCategory()}

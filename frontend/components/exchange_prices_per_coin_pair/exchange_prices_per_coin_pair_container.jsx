@@ -6,8 +6,8 @@ const mapStateToProps = state => {
   let exchangePricesPerCoinPair;
   let coinPair = state.entities.coinPair;
 
-  if (state.entities.coinPair.fsym && Object.values(state.entities.exchangePricesPerCoinPair).length > 0) {
-    exchangePricesPerCoinPair = state.entities.exchangePricesPerCoinPair[coinPair.fsym].slice(0,5);
+  if (Object.values(state.entities.exchangePricesPerCoinPair).length > 0) {
+    exchangePricesPerCoinPair = state.entities.exchangePricesPerCoinPair;
   } else {
     exchangePricesPerCoinPair = [];
   }

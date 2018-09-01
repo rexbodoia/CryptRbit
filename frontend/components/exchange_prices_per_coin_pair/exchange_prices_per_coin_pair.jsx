@@ -8,7 +8,8 @@ class ExchangePricesPerCoinPair extends React.Component {
 
     this.state = {
       fsym: '',
-      tsym: ''
+      tsym: '',
+      exchangeDataCollected: false
     }
   }
 
@@ -30,7 +31,11 @@ class ExchangePricesPerCoinPair extends React.Component {
     if (Object.keys(this.props.topCoins).length !== Object.keys(newProps.topCoins).length) {
       for (let i = 0; i < Object.keys(newProps.topCoins).length; i++) {
         setTimeout(() => {
-          this.props.fetchPrices(newProps.topCoins[i].SYMBOL, tsym, 100)
+          this.props.fetchPrices(newProps.topCoins[i].SYMBOL, tsym, 20).then(() => {
+            if (i === Object.keys(newProps.topCoins).length - 1) {
+              this.setState({exchangeDataCollected: true});
+            }
+          });
         }, 25);
       }
     }
@@ -72,8 +77,48 @@ class ExchangePricesPerCoinPair extends React.Component {
     }
   }
 
+  findArbitrageOpportunities() {
+    const opportunities = {};
+
+    for (let i = 0; i < Object.keys(this.props.data).length; i++) {
+      let coin = Object.keys(this.props.data)[i];
+      let coinValues = {};
+      this.props.data[coin].forEach(exchange => coinValues[exchange.MARKET] = exchange.PRICE);
+
+      let opportunity = {}
+      for (let j = 0; j < Object.keys(coinValues).length; j++) {
+        let exchange = Object.keys(coinValues)[j];
+
+        if (j === 0) {
+          opportunity.min = {[exchange]: coinValues[exchange]};
+          opportunity.max = {[exchange]: coinValues[exchange]};
+        } else if  (coinValues[exchange] < Object.values(opportunity.min)) {
+          opportunity.min = { [exchange]: coinValues[exchange] };
+        } else if (coinValues[exchange] > Object.values(opportunity.max)) {
+          opportunity.max = { [exchange]: coinValues[exchange] };
+        }
+      }
+
+      let min = Object.values(opportunity.min);
+      let max = Object.values(opportunity.max);
+      opportunities[coin] = {difference: max - min, min: opportunity.min, max: opportunity.max};
+    }
+
+    return opportunities;
+  }
+
   render() {
-    const data = this.twoDecimalify(this.props.data);
+    let data;
+    if (this.props.coinPair.fsym && this.props.data[this.props.coinPair.fsym]) {
+      data = this.twoDecimalify(this.props.data[this.props.coinPair.fsym]);
+      data = this.twoDecimalify([]);
+    } else 
+    if (this.state.exchangeDataCollected) {
+      data = this.findArbitrageOpportunities()
+    } else {
+      data = this.twoDecimalify([]);
+    }
+    
     return (
       <div>
         <div className="jumbotron jumbotron-fluid arbitrage-heading p-5">

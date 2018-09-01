@@ -25,7 +25,7 @@ const App = () => (
       <div className="row">
         <DonutChartContainer />
       </div>
-      <div className="row">
+      <div className="row justify-content-center">
         <NewsFeedContainer />
       </div>
     </div>
