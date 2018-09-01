@@ -5,8 +5,9 @@ import PreferencesModal from './preferences_modal';
 //   user: state.session.id
 // })
 //
-// const mapDispatchToProps = dispatch => ({
-//   storePreferences: preferences => dispatch(storePreferences(preferences))
-// })
+const mapDispatchToProps = dispatch => ({
+  setPreferences: preferences => dispatch(setPrefs(preferences)),
+  getPreferences: () => dispatch(getPrefs())
+})
 
 export default connect(null, null)(PreferencesModal);

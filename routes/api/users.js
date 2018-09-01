@@ -30,8 +30,8 @@ router.patch("/prefs",
     // console.log(user);
     const updated =  User.findOneAndUpdate({_id: id}, {$set:{prefs: prefs}}, {new: true, upsert: true}).then(user => res.json(user));
     // console.log(res.body)
-    
-      
+
+
   }
 );
 
@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
       if (!user) {
         return res.status(404).json({email: 'This user does not exist'});
       }
-
+      
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
@@ -85,7 +85,7 @@ router.post('/login', (req, res) => {
               (err, token) => {
                 res.json({
                   success: true,
-                  token: 'Bearer ' + token 
+                  token: 'Bearer ' + token
                 })
               });
           } else {
