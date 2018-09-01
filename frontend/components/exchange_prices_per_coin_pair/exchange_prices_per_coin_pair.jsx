@@ -82,6 +82,8 @@ class ExchangePricesPerCoinPair extends React.Component {
 
     for (let i = 0; i < Object.keys(this.props.data).length; i++) {
       let coin = Object.keys(this.props.data)[i];
+      if (!coin) continue;
+
       let coinValues = {};
       this.props.data[coin].forEach(exchange => coinValues[exchange.MARKET] = exchange.PRICE);
 
@@ -101,20 +103,39 @@ class ExchangePricesPerCoinPair extends React.Component {
 
       let min = Object.values(opportunity.min);
       let max = Object.values(opportunity.max);
-      opportunities[coin] = {difference: max - min, min: opportunity.min, max: opportunity.max};
+      opportunities[coin] = {difference: 1 - (min / max), min: opportunity.min, max: opportunity.max};
     }
 
     return opportunities;
   }
 
+  findTopFiveOpportunities(opportunities) {
+    let differences = [];
+
+    for (let i = 0; i < Object.values(opportunities).length; i++) {
+      differences.push(Object.values(opportunities)[i].difference);
+    }
+
+    let topDifferences = differences.sort().slice(-5);
+    let topOpportunities = [];
+
+    for (let i = 0; i < Object.values(opportunities).length; i++) {
+      let coin = Object.keys(opportunities)[i];
+      if (topDifferences.includes(opportunities[coin].difference)) {
+        topOpportunities.push({MARKET: coin, PRICE: opportunities[coin].difference})
+      }
+    }
+
+    return topOpportunities;
+  }
+
   render() {
     let data;
     if (this.props.coinPair.fsym && this.props.data[this.props.coinPair.fsym]) {
-      data = this.twoDecimalify(this.props.data[this.props.coinPair.fsym]);
-      data = this.twoDecimalify([]);
-    } else 
-    if (this.state.exchangeDataCollected) {
-      data = this.findArbitrageOpportunities()
+      data = this.twoDecimalify(this.props.data[this.props.coinPair.fsym].slice(0,5));
+    } else if (this.state.exchangeDataCollected) {
+      let opportunities = this.findArbitrageOpportunities()
+      data = this.findTopFiveOpportunities(opportunities);
     } else {
       data = this.twoDecimalify([]);
     }
