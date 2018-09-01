@@ -28,7 +28,7 @@ router.patch("/prefs",
     // console.log(prefs)
     const user = User.findById(id);
     // console.log(user);
-    const updated =  User.findOneAndUpdate({_id: id}, {$set:{prefs: prefs}}, {new: true}).then(user => res.json(user));
+    const updated =  User.findOneAndUpdate({_id: id}, {$set:{prefs: prefs}}, {new: true, upsert: true}).then(user => res.json(user));
     // console.log(res.body)
 
 

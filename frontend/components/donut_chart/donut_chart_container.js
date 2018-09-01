@@ -8,11 +8,29 @@ import {
 //under entitites...
 
 const msp = ( state ) => { 
+    console.log(state);
     const data = state.entities.exchangeDonutData;
-    if (data.totalData && data.exchangesData) { return {chartData: setChartData(data.exchangesData, data.totalData) } }else {
-        return {}
+    let chartData;
+    let coinPair;
+
+    if (data.totalData && data.exchangesData) { 
+       chartData = setChartData(data.exchangesData, data.totalData)
+    } else {
+        chartData = {}
+    };
+
+    if (state.entities.coinPair) {
+        coinPair = state.entities.coinPair
+    } else if ( state.session.coin) {
+        coinPair = {fsym: state.session.coin, tsym: "USD" }
+    } else {
+        coinPair = { fsym: "BTC", tsym: "USD"}
     }
-    
+
+    return {
+            chartData: chartData,
+            coinPair: coinPair 
+    } 
 }
 
 const mdp = (dispatch) => {
