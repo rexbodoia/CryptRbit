@@ -28,5 +28,4 @@
 .DS_store
 npm-debug.log
 
-keys.js
 keys_dev.js
