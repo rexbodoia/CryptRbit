@@ -40,9 +40,14 @@ class DonutChart extends React.Component {
 
 
     renderChart (data) {
-        // console.log("render chart", this.state);
+        let label;
+        if (this.state.coinPair) {
+            label = `${this.state.coinPair.fsym}/${this.state.coinPair.tsym}`
+        } else {
+            label = ''
+        }
+        
         if (data.length > 0) {
-            // console.log("chart branch")
             return (
                 <ResponsiveContainer width="100%" height={600}>
                   <PieChart >
@@ -56,7 +61,7 @@ class DonutChart extends React.Component {
                           <Cell key={`cell-${index}`} fill={COLORS[index]} />
                       ))
                       }
-                    <Label value="% 24-hour BTC/USD Volume" position="center" fontSize={24} />
+                    <Label value={label} position="center" fontSize={24} />
                     </Pie>
                   <Tooltip />
                   </PieChart>
@@ -80,7 +85,7 @@ class DonutChart extends React.Component {
         console.log(data);
         return (
             <div className="mx-auto w-75 py-3 mb-5">
-              <h1 className="display-3 text-center">Top Exchanges by Volume</h1>
+              <h2 className="display-3 text-center">Top Exchanges by Volume</h2>
               {this.renderChart(data)}
             </div>
         )
