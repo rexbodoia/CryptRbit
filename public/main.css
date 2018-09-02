@@ -45,3 +45,8 @@ ul {
   border: 1px solid #ccc;
   padding: 4px;
 }
+
+.button:hover {
+  cursor: pointer;
+  background-color: rgb(220, 220, 220);
+}
