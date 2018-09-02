@@ -16,9 +16,6 @@ const App = () => (
         <CoinPairFormContainer />
         <PreferencesModalContainer />
       </div>
-      {/* <div className="row">
-        <CoinPairFormContainer />
-      </div> */}
       <div className="row">
         <ExchangePricesPerCoinPairContainer />
       </div>

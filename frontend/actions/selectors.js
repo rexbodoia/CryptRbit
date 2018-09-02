@@ -1,9 +1,9 @@
-// filter incoming total_data for donut Chart slice of state 
-/* incoming data example : 
+// filter incoming total_data for donut Chart slice of state
+/* incoming data example :
     exchangeDonutData.total_data = [{
         SYMBOL: "",
         VOLUME24HRTO: 0,
-        },...] 
+        },...]
 */
 
 
@@ -21,16 +21,16 @@ export const setChartData = (exchangeSlice, totalSlice) => {
     const targetCurrency = exchangeSlice[0].fromSymbol;
 
     //calculates total 24h volume of a coin in 'USD'
-    const totalVolume24H = (totals, coin) => { 
+    const totalVolume24H = (totals, coin) => {
        let target;
         totals.forEach(obj => {
             if (obj.SYMBOL === coin) {
                 target = obj;
-            } 
-        })    
+            }
+        })
        return target.VOLUME24HOURTO;
-    } 
-    
+    }
+
 
     const donutChartData = exchangeSlice
     //calculate total volume per exchange as % of totalvolume in USD
@@ -48,7 +48,7 @@ export const setChartData = (exchangeSlice, totalSlice) => {
     const createOtherExchange = (totalValue, totalVolume24H) => {
         const otherPercentage = (totalVolume24H - totalValue) / totalVolume24H * 100;
         return  {
-            exchange: 'other', 
+            exchange: 'other',
             volume24hTo: (totalVolume24H - totalValue),
             percentageTotal: parseFloat(otherPercentage.toFixed(2))
         }
@@ -63,4 +63,14 @@ export const setChartData = (exchangeSlice, totalSlice) => {
         return {exchange: obj.exchange, value: obj.percentageTotal}
     })
     return newData;
+}
+
+export const selectExchanges = data => {
+  let exchanges = [];
+  
+  data.BTC.forEach(exchange => {
+    exchanges.push(exchange.MARKET);
+  })
+
+  return exchanges;
 }
