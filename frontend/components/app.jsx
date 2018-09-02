@@ -13,12 +13,12 @@ const App = () => (
         <SignupSigninFormContainer />
       </div>
       <div className="row">
-        <div className="col-10"></div>
+        <CoinPairFormContainer />
         <PreferencesModalContainer />
       </div>
-      <div className="row">
+      {/* <div className="row">
         <CoinPairFormContainer />
-      </div>
+      </div> */}
       <div className="row">
         <ExchangePricesPerCoinPairContainer />
       </div>

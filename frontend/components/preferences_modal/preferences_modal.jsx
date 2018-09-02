@@ -7,7 +7,7 @@ class PreferencesModal extends React.Component {
 
   render() {
     return (
-      <div className="my-3 float-right">
+      <div className="my-3 d-inline col-3">
         <button type="button" className="btn btn-primary float-right" data-toggle="modal" data-target="#preferencesModal">
           Select Filter Preferences
         </button>
