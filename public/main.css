@@ -39,3 +39,9 @@ ul {
 #arbitrage-description {
   font-size: 16px;
 }
+
+.graph-tooltip {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 4px;
+}

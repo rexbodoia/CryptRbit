@@ -7,7 +7,8 @@ export const RESPONSE_ERROR = 'RESPONSE_ERROR';
 
 const receiveExchangePricesPerCoinPair = payload => ({
   type: RECEIVE_EXCHANGE_PRICES_PER_COIN_PAIR,
-  payload
+  coin: payload.Data.CoinInfo.Name,
+  exchanges: payload.Data.Exchanges
 });
 
 const receiveTopCoinPairs = payload => ({
@@ -31,8 +32,8 @@ export const fetchExchangePricesPerCoinPair = (fsym, tsym, limit) => dispatch =>
     })
 )
 
-export const fetchTopCoinPairs = () => dispatch => (
-  APIUtil.fetchTopCoinPairs()
+export const fetchTopCoinPairs = limit => dispatch => (
+  APIUtil.fetchTopCoinPairs(limit)
     .then(coins => {
       if (coins.Response === "Error") {
         dispatch(receiveErrors(coins))
