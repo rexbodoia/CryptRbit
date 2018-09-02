@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchPrices: (fsym, tsym, limit) => dispatch(fetchExchangePricesPerCoinPair(fsym, tsym, limit)),
-  fetchTopCoinPairs: () => dispatch(fetchTopCoinPairs())
+  fetchTopCoinPairs: limit => dispatch(fetchTopCoinPairs(limit))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExchangePricesPerCoinPair);

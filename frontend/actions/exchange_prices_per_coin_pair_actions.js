@@ -32,8 +32,8 @@ export const fetchExchangePricesPerCoinPair = (fsym, tsym, limit) => dispatch =>
     })
 )
 
-export const fetchTopCoinPairs = () => dispatch => (
-  APIUtil.fetchTopCoinPairs()
+export const fetchTopCoinPairs = limit => dispatch => (
+  APIUtil.fetchTopCoinPairs(limit)
     .then(coins => {
       if (coins.Response === "Error") {
         dispatch(receiveErrors(coins))
