@@ -12,13 +12,16 @@ class PreferencesModal extends React.Component {
     let coins = this.props.topCoins;
     if(coins.length > 0) {
       return (
-        coins.map((coin, idx) => {
+        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {coins.map((coin, idx) => {
           return (
-            <label className="btn btn-secondary ml-2">
-              <input type="radio" name="options" id={`option${idx + 2}`} autoComplete="off"></input>{coin.SYMBOL}
-            </label>
+            // <label className="btn btn-secondary ml-2 row">
+            //   <input type="radio" name="options" id={`option${idx + 2}`} autoComplete="off"></input>{coin.SYMBOL}
+            // </label>
+              <a className="dropdown-item" key={idx} href="#">{coin.SYMBOL}</a>
           );
-        })
+        })}
+        </div>
       );
     } else {
       return (
@@ -30,11 +33,17 @@ class PreferencesModal extends React.Component {
   renderModalBody() {
     return (
       <div className="modal-body">
-        <div className="btn-group btn-group-toggle" data-toggle="buttons">
+        {/* <div className="btn-group btn-group-toggle" data-toggle="buttons">
 
           <label className="btn btn-secondary active">
             <input type="radio" name="options" id="option1" autoComplete="off" defaultChecked></input>BTC
           </label>
+          {this.renderCoinList()}
+        </div> */}
+        <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Choose a Coin
+          </button>
           {this.renderCoinList()}
         </div>
       </div>
