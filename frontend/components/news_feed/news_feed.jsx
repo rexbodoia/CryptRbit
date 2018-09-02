@@ -56,26 +56,27 @@ export default class NewsFeed extends React.Component {
   filterCategory() {
     let newsCategories;
     if (this.props.newsCategories) {
-      newsCategories = Object.values(this.props.newsCategories);
+      newsCategories = Object.values(this.props.newsCategories).slice(0,15);
     } else {
       newsCategories = [];
     }
-
-    return <div className="dropdown">
-      <button className="btn btn-primary dropdown-toggle left-buffer align-center" type="button" data-toggle="dropdown">
-        Filter by Category
-        <span className="caret" />
-      </button>
-      <ul className="dropdown-menu">
-        {newsCategories.map(category => (
-          <li key={category.categoryName}>
-            <a className="undo-link-style" id={category.categoryName} href="" onClick={this.setCategory}>
-              {category.wordsAssociatedWithCategory[1]}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>;
+    return (
+      <div className="dropdown">
+        <button className="btn btn-primary dropdown-toggle left-buffer align-center" type="button" data-toggle="dropdown">
+          Filter by Category
+          <span className="caret" />
+        </button>
+        <ul className="dropdown-menu">
+          {newsCategories.map(category => (
+            <li key={category.categoryName}>
+              <a className="undo-link-style" id={category.categoryName} href="" onClick={this.setCategory}>
+                {category.wordsAssociatedWithCategory[1]}
+              </a>
+            </li>
+          ))}
+        </ul>
+    </div>
+    );
   }
 
   setNewsSource(e) {
@@ -86,25 +87,27 @@ export default class NewsFeed extends React.Component {
   filterNewsSource() {
     let newsSources;
     if (this.props.newsSources) {
-      newsSources = Object.values(this.props.newsSources);
+      newsSources = Object.values(this.props.newsSources).slice(0,15);
     } else {
       newsSources = [];
     }
-    return <div className="dropdown">
-      <button className="btn btn-primary dropdown-toggle left-buffer" type="button" data-toggle="dropdown">
-        Filter by News Source
-        <span className="caret" />
-      </button>
-      <ul className="dropdown-menu">
-        {newsSources.map(source => (
-          <li key={source.key}>
-            <a className="undo-link-style" id={source.key} href="" onClick={this.setNewsSource}>
-              {source.name}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>;
+    return (
+      <div className="dropdown">
+        <button className="btn btn-primary dropdown-toggle left-buffer" type="button" data-toggle="dropdown">
+          Filter by News Source
+          <span className="caret" />
+        </button>
+        <ul className="dropdown-menu">
+          {newsSources.map(source => (
+            <li key={source.key}>
+              <a className="undo-link-style" id={source.key} href="" onClick={this.setNewsSource}>
+                {source.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 
   render() {
@@ -112,7 +115,7 @@ export default class NewsFeed extends React.Component {
     const startIdx = currentPage * articlesPerPage;
 
     return (
-      <div className="col-10">
+      <div className="col-7">
         <div className="row">
           <h1 className="news-feed-title">News Feed</h1>
           {this.filterCategory()}
