@@ -1,5 +1,4 @@
 import axios from 'axios';
-//linter error for this import, not sure why
 import jwtDecode from 'jwt-decode';
 // var jwtDecode = require('jwt-decode');
 
@@ -21,11 +20,12 @@ export const setAuthToken = token => {
 
 //deleted out history argument, as not used
 export const registerUser = (userData) => dispatch => {
-    axios.post('/api/users/register', userData).catch(err =>
-        dispatch({
-            type: GET_ERRORS,
-            payload: err.response.data
-        }));
+  console.log(userData);
+  axios.post('/api/users/register', userData).catch(err =>
+      dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+      }));
 };
 
 // leaving out the token for login here, will call registerUser and loginUser separately
@@ -61,5 +61,9 @@ export const setCurrentUser = decoded => {
 export const logoutUser = () => dispatch => {
     localStorage.removeItem('jwtToken');
     setAuthToken(false);
-    dispatch(setCurrentUser({}));
+    dispatch(setCurrentUser({ prefs: {
+        coin: null,
+        newsSource: null,
+        exchange: null,
+    }}));
 };

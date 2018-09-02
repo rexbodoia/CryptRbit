@@ -22,10 +22,10 @@
 /public/assets
 .byebug_history
 
-bundle.js
-/bundle.js.map
+/public/bundle.js
+/public/bundle.js.map
 .byebug_history
 .DS_store
 npm-debug.log
 
-keys.js
+keys_dev.js
