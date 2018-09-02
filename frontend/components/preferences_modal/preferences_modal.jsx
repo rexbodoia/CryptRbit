@@ -11,6 +11,7 @@ class PreferencesModal extends React.Component {
     this.renderCoinList = this.renderCoinList.bind(this);
     this.setPrefs = this.setPrefs.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
+    this.renderSaveButton = this.renderSaveButton.bind(this);
   }
 
   setPrefs(key, value) {
@@ -24,6 +25,14 @@ class PreferencesModal extends React.Component {
   saveChanges(e) {
     e.preventDefault();
     this.props.setPreferences(this.prefs);
+  }
+
+  renderSaveButton() {
+    if (this.props.user) {
+      return (
+        <button type="button" className="btn btn-primary" onClick={this.saveChanges}>Save changes</button>
+      );
+    }
   }
 
   renderCoinList() {
@@ -87,28 +96,34 @@ class PreferencesModal extends React.Component {
   }
 
   renderModalBody() {
-    return (
-      <div className="modal-body">
-        <div className="dropdown d-inline">
-          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Coins
-          </button>
-          {this.renderCoinList()}
+    if(this.props.user) {
+      return (
+        <div className="modal-body">
+          <div className="dropdown d-inline">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Coins
+            </button>
+            {this.renderCoinList()}
+          </div>
+          <div className="dropdown d-inline ml-2">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              News Sources
+            </button>
+            {this.renderNewsSourceList()}
+          </div>
+          <div className="dropdown d-inline ml-2">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              News Categories
+            </button>
+            {this.renderNewsCategoryList()}
+          </div>
         </div>
-        <div className="dropdown d-inline ml-2">
-          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            News Sources
-          </button>
-          {this.renderNewsSourceList()}
-        </div>
-        <div className="dropdown d-inline ml-2">
-          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            News Categories
-          </button>
-          {this.renderNewsCategoryList()}
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <p className="m-3">Sign in to set your preferences</p>
+      );
+    }
   }
 
   render() {
@@ -133,7 +148,7 @@ class PreferencesModal extends React.Component {
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                <button type="button" className="btn btn-primary" onClick={this.saveChanges}>Save changes</button>
+                {this.renderSaveButton()}
               </div>
 
             </div>
