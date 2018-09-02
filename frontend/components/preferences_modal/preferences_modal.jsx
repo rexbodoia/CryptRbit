@@ -4,8 +4,20 @@ class PreferencesModal extends React.Component {
   constructor(props) {
     super(props);
 
+    this.prefs = {};
+
     this.renderModalBody = this.renderModalBody.bind(this);
+    this.renderNewsSourceList = this.renderNewsSourceList.bind(this);
     this.renderCoinList = this.renderCoinList.bind(this);
+    this.setPrefs = this.setPrefs.bind(this);
+  }
+
+  setPrefs(key, value) {
+    return (e) => {
+      e.preventDefault();
+      this.prefs[key] = value;
+      console.log(this.prefs);
+    }
   }
 
   renderCoinList() {
@@ -15,10 +27,26 @@ class PreferencesModal extends React.Component {
         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
         {coins.map((coin, idx) => {
           return (
-            // <label className="btn btn-secondary ml-2 row">
-            //   <input type="radio" name="options" id={`option${idx + 2}`} autoComplete="off"></input>{coin.SYMBOL}
-            // </label>
-              <a className="dropdown-item" key={idx} href="#">{coin.SYMBOL}</a>
+            <a className="dropdown-item" key={idx} onClick={this.setPrefs('coin', coin.SYMBOL)}>{coin.SYMBOL}</a>
+          );
+        })}
+        </div>
+      );
+    } else {
+      return (
+        <p>...</p>
+      );
+    }
+  }
+
+  renderNewsSourceList() {
+    let sources = this.props.newsSources;
+    if(sources.length > 0) {
+      return (
+        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {sources.map((source, idx) => {
+          return (
+            <a className="dropdown-item" key={idx} onClick={this.setPrefs('source', source.name)}>{source.name}</a>
           );
         })}
         </div>
@@ -33,18 +61,17 @@ class PreferencesModal extends React.Component {
   renderModalBody() {
     return (
       <div className="modal-body">
-        {/* <div className="btn-group btn-group-toggle" data-toggle="buttons">
-
-          <label className="btn btn-secondary active">
-            <input type="radio" name="options" id="option1" autoComplete="off" defaultChecked></input>BTC
-          </label>
-          {this.renderCoinList()}
-        </div> */}
-        <div className="dropdown">
+        <div className="dropdown d-inline">
           <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Choose a Coin
+            Coins
           </button>
           {this.renderCoinList()}
+        </div>
+        <div className="dropdown d-inline ml-2">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            News Sources
+          </button>
+          {this.renderNewsSourceList()}
         </div>
       </div>
     );
