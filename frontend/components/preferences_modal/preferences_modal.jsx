@@ -30,7 +30,7 @@ class PreferencesModal extends React.Component {
   renderSaveButton() {
     if (this.props.user) {
       return (
-        <button type="button" className="btn btn-primary" onClick={this.saveChanges}>Save changes</button>
+        <button type="button" className="btn btn-primary" onClick={this.saveChanges} data-dismiss="modal">Save changes</button>
       );
     }
   }
