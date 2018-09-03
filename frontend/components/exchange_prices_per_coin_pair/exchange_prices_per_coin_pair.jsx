@@ -2,7 +2,12 @@ import React from 'react';
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
 import { ClipLoader } from 'react-spinners';
 
-const EXCHANGES_BLACKLIST = ['localbitcoin', 'Yobit']
+// Add exchanges to this list to remove them from all arbitrage opportunities
+const EXCHANGES_BLACKLIST = ['localbitcoin', 'WEX', 'CCEDK', 'Cryptsy', 'Yobit']
+// Add coins to this list to remove them from all arbitrage opportunities
+const COINS_BLACKLIST = ['NEO']
+// Add pairs of a coin and an exchange to remove the exchange from opportunities relating only to the given coin
+const COIN_EXCHANGE_PAIR_BLACKLIST = [['ZEC', 'CCEX']]
 
 class ExchangePricesPerCoinPair extends React.Component {
   constructor(props) {
@@ -18,7 +23,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   componentDidMount() {
     let coins = this.props.coinPair;
     this.props.fetchPrices(coins.fsym, coins.tsym, 5);
-    this.props.fetchTopCoinPairs(10);
+    this.props.fetchTopCoinPairs(20);
   }
 
   componentWillReceiveProps(newProps) {
@@ -33,10 +38,8 @@ class ExchangePricesPerCoinPair extends React.Component {
     if (Object.keys(this.props.topCoins).length !== Object.keys(newProps.topCoins).length) {
       for (let i = 0; i < Object.keys(newProps.topCoins).length; i++) {
         setTimeout(() => {
-          this.props.fetchPrices(newProps.topCoins[i].SYMBOL, tsym, 10).then(() => {
-            if (i === Object.keys(newProps.topCoins).length - 1) {
-              this.setState({exchangeDataCollected: true});
-            }
+          this.props.fetchPrices(newProps.topCoins[i].SYMBOL, tsym, 20).then(() => {
+            if (i === Object.keys(newProps.topCoins).length - 1) this.setState({exchangeDataCollected: true});
           });
         }, 25);
       }
@@ -108,11 +111,12 @@ class ExchangePricesPerCoinPair extends React.Component {
 
     for (let i = 0; i < Object.keys(this.props.data).length; i++) {
       let coin = Object.keys(this.props.data)[i];
-      if (!coin) continue;
+      if (!coin || COINS_BLACKLIST.includes(coin)) continue;
 
       let coinValues = {};
       this.props.data[coin].forEach(exchange => {
         if (EXCHANGES_BLACKLIST.includes(exchange.MARKET)) return;
+        if (COIN_EXCHANGE_PAIR_BLACKLIST.includes([exchange.FROMSYMBOL, exchange.MARKET])) return;
         coinValues[exchange.MARKET] = exchange.PRICE;
       });
 
