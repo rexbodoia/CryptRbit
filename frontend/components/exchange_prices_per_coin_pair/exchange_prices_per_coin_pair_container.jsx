@@ -4,14 +4,22 @@ import { fetchExchangePricesPerCoinPair, fetchTopCoinPairs } from '../../actions
 
 const mapStateToProps = state => {
   let exchangePricesPerCoinPair;
-  let coinPair = state.entities.coinPair;
+  // let coinPair = state.entities.coinPair;
+  let coinPair;
 
+  if (state.entities.coinPair) {
+    coinPair = state.entities.coinPair
+  } else if (state.session.coin) {
+    coinPair = {fsym: state.session.coin, tsym: "USD" }
+  } else {
+    coinPair = { fsym: "BTC", tsym: "USD"}
+  }
   if (Object.values(state.entities.exchangePricesPerCoinPair).length > 0) {
     exchangePricesPerCoinPair = state.entities.exchangePricesPerCoinPair;
   } else {
     exchangePricesPerCoinPair = [];
   }
-  
+
   return ({
     coinPair: coinPair,
     data: exchangePricesPerCoinPair,

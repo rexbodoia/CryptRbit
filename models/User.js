@@ -20,8 +20,8 @@ const UserSchema = new Schema({
   },
   prefs: {
     coin: String,
-    news: String,
-    exchange: String,
+    newsSource: String,
+    newsCategory: String,
   }
 });
 
