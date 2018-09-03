@@ -8,7 +8,7 @@ export const GOTTEN_USER_PREFS = "GOTTEN_USER_PREFS";
 
 export const setPrefs = prefsData => dispatch => {
   axios
-    .patch("/api/users/prefs", prefsData).then( payload => 
+    .patch("/api/users/prefs", prefsData).then( payload =>
     dispatch({
         type: RECEIVE_USER_PREFS,
         payload
@@ -22,7 +22,7 @@ export const setPrefs = prefsData => dispatch => {
 };
 
 export const getPrefs = () => dispatch => {
-    axios.get("/api/users/current").then( payload => 
+    axios.get("/api/users/current").then( payload =>
         dispatch({
             type: RECEIVE_USER_PREFS,
             payload

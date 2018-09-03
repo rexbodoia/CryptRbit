@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
 import PreferencesModal from './preferences_modal';
+import { setPrefs } from '../../api_utils/preferences_api_util';
 
-// const mapStateToProps = state => ({
-//   user: state.session.id
-// })
-//
-const mapDispatchToProps = dispatch => ({
-  setPreferences: preferences => dispatch(setPrefs(preferences)),
-  getPreferences: () => dispatch(getPrefs())
+const mapStateToProps = state => ({
+  user: state.session.id,
+  topCoins: state.entities.topCoins,
+  newsSources: state.entities.newsSources,
+  newsCategories: state.entities.newsCategories
 })
 
-export default connect(null, null)(PreferencesModal);
+const mapDispatchToProps = dispatch => ({
+  setPreferences: preferences => dispatch(setPrefs(preferences))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PreferencesModal);

@@ -8,12 +8,11 @@ import {
 //under entitites...
 
 const msp = ( state ) => { 
-    console.log(state);
     const data = state.entities.exchangeDonutData;
     let chartData;
     let coinPair;
 
-    if (data.totalData && data.exchangesData) { 
+    if (data.totalData && data.exchangesData) {
        chartData = setChartData(data.exchangesData, data.totalData)
     } else {
         chartData = {}
@@ -29,8 +28,8 @@ const msp = ( state ) => {
 
     return {
             chartData: chartData,
-            coinPair: coinPair 
-    } 
+            coinPair: coinPair
+    }
 }
 
 const mdp = (dispatch) => {

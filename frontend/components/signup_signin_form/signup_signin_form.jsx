@@ -49,7 +49,7 @@ class SignupSigninForm extends React.Component {
         <input type="email" className="form-control my-2 mr-sm-2" placeholder="email" onChange={this.update('email')} />
 
         <div className="input-group my-2 mr-sm-2">
-          <input type="password" className="form-control" placeholder=" confirm password" onChange={this.update('password')} />
+          <input type="password" className="form-control" placeholder=" password" onChange={this.update('password')} />
         </div>
 
         <button onClick={this.signinUser} className="btn btn-primary my-2">Sign In</button>
