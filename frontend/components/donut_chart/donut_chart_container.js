@@ -8,7 +8,6 @@ import {
 //under entitites...
 
 const msp = ( state ) => { 
-    console.log(state);
     const data = state.entities.exchangeDonutData;
     let chartData;
     let coinPair;
