@@ -7,16 +7,20 @@ const runNotifications = (url) => {
   
 //     // what call back am I going to run?
 
-    setInterval(cb,1hr) {
+    setInterval = () => {
 
     }
 
     const getData = () => {
         //some type of http req/res to API
+        const data = []
         const top10url = "https://min-api.cryptocompare.com/data/top/volumes?tsym=USD&limit=10"
         const coins = getAPIData(top10url);
-        const exchangesUrl = "https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${fsym}&tsym=${tsym}&limit=${limit}"
-
+        const exchangesUrl = (fsym) => `https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${fsym}&tsym=USD&limit=10`
+        const percentages = getAPIData(exchangesUrl) // but need to sub in each coin.
+            coins.forEach((coin, index)=>{
+                getAPIData(exchangesUrl(fsym)) //how to access and store data
+            })
 
         const processData = () => {
             //filter and reshape - need coin, %d if greater than minimum set on notifications
@@ -42,10 +46,6 @@ const runNotifications = (url) => {
         }
 
     }
-
-    
-    
-
 
 }
 
@@ -104,7 +104,7 @@ findArbitrageOpportunities = (data) => {
         if (!coin) continue;
 
         let coinValues = {};
-        this.props.data[coin].forEach(exchange => {
+        data[coin].forEach(exchange => {
             if (EXCHANGES_BLACKLIST.includes(exchange.MARKET)) return;
             coinValues[exchange.MARKET] = exchange.PRICE;
         });
