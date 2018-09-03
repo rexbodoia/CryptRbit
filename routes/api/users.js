@@ -23,8 +23,8 @@ router.patch("/prefs",
     const id = req.body.id;
     const prefs = {};
     prefs.coin = req.body.coin;
-    prefs.news = req.body.newsSource;
-    prefs.exchange = req.body.exchange;
+    prefs.newsSource = req.body.newsSource;
+    prefs.newsCategory = req.body.newsCategory;
     // console.log(prefs)
     const user = User.findById(id);
     // console.log(user);
@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
       if (!user) {
         return res.status(404).json({email: 'This user does not exist'});
       }
-      
+
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {

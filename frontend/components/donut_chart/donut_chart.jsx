@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners";
 
 // { chartData: setChartData(data.exchangesData, data.totalData),
 //         coinPair: state.entities.coinPair,
-//             coinPref: state.session.coin } 
+//             coinPref: state.session.coin }
 
 const COLORS = [
     "#6B8E23", "#556B2F", "#66CDAA", "#8FBC8F", "#20B2AA", "#008B8B"
@@ -18,7 +18,7 @@ class DonutChart extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("before", this.state); 
+        // console.log("before", this.state);
         this.props.getExchanges();
         this.props.getTotal();
         this.setState({
@@ -46,7 +46,7 @@ class DonutChart extends React.Component {
         } else {
             label = ''
         }
-        
+
         if (data.length > 0) {
             return (
                 <ResponsiveContainer width="100%" height={600}>
@@ -82,7 +82,6 @@ class DonutChart extends React.Component {
 
     render() {
         let data = this.props.chartData || [];
-        console.log(data);
         return (
             <div className="mx-auto w-75 py-3 mb-5">
               <h2 className="display-3 text-center">Top Exchanges by Volume</h2>

@@ -20,14 +20,14 @@ const sessionReducer = (state = _nullUser, action ) => {
         return {
             id: action.payload.id,
             coin: action.payload.prefs.coin,
-            newsSource: action.payload.prefs.news,
-            exchange: action.payload.prefs.exchange
+            newsSource: action.payload.prefs.newsSource,
+            newsCategory: action.payload.prefs.newsCategory
         };
         case RECEIVE_USER_PREFS:
-        return    merge({}, state, { 
+        return    merge({}, state, {
             coin: action.payload.data.prefs.coin,
-            newsSource: action.payload.data.prefs.news,
-            exchange: action.payload.data.prefs.exchange,
+            newsSource: action.payload.data.prefs.newsSource,
+            exchange: action.payload.data.prefs.newsCategory,
         })
         default:
            return state;

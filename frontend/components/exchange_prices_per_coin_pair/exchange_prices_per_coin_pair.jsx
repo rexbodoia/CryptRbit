@@ -55,7 +55,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   renderChart(data) {
     if (data.length > 0) {
       return (
-          <div className="container-fluid">
+          <div className="container-fluid col-8">
             <BarChart margin={{ left: 20 }} width={900} height={400} data={data}>
               <XAxis dataKey="MARKET" />
               <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
@@ -80,7 +80,7 @@ class ExchangePricesPerCoinPair extends React.Component {
   }
 
   renderTooltip(props) {
-    let data = props.data.filter(opp => props.label === opp.MARKET)[0] || {}; 
+    let data = props.data.filter(opp => props.label === opp.MARKET)[0] || {};
 
     if (data.BUY) {
       if (data) {
@@ -151,8 +151,8 @@ class ExchangePricesPerCoinPair extends React.Component {
     for (let i = 0; i < Object.values(opportunities).length; i++) {
       let coin = Object.keys(opportunities)[i];
       if (topDifferences.includes(opportunities[coin].difference)) {
-        topOpportunities.push({ 
-          MARKET: coin, 
+        topOpportunities.push({
+          MARKET: coin,
           PRICE: parseFloat(opportunities[coin].difference.toFixed(3)),
           BUY: { [Object.keys(opportunities[coin].min)]: Object.values(opportunities[coin].min)[0].toFixed(2) },
           SELL: { [Object.keys(opportunities[coin].max)]: Object.values(opportunities[coin].max)[0].toFixed(2) },
@@ -173,16 +173,31 @@ class ExchangePricesPerCoinPair extends React.Component {
     } else {
       data = this.twoDecimalify([]);
     }
-    
-    return (
-      <div>
-        <div className="jumbotron jumbotron-fluid arbitrage-heading p-5">
-          <h2 className="display-4">Arbitrage Opportunities</h2>
-          <p className="lead" id="arbitrage-description">These are the current price differences at the top five crypto exchanges for the given currency pair. If you have an account at any two of these exchanges, theoretically you could transfer some of this currency from the exchange with the higher price to the exchange with the lower price to take advantage of an arbitrage opportunity.</p>
+
+    if (data.length > 0) {
+      return (
+          <div className="container-fluid col-8 my-5">
+            <BarChart margin={{ left: 20 }} width={900} height={400} data={data}>
+              <XAxis dataKey="MARKET" />
+              <YAxis domain={[dataMin => (dataMin - dataMin / 500).toFixed(2), 'dataMax']} />
+              <Tooltip content={this.renderTooltip} data={data}/>
+              <Legend />
+              <Bar dataKey="PRICE" fill="#8884d8" />
+            </BarChart>
+          </div>
+      );
+    } else {
+      return (
+        <div style={{ minHeight: 400, margin: "auto", paddingTop: 200 }}>
+          <ClipLoader
+            className='spinner'
+            sizeUnit={"px"}
+            size={120}
+            color={'rgb(155, 166, 178)'}
+          />
         </div>
-        {this.renderChart(data)}
-      </div>
-    )
+      );
+    }
   }
 }
 

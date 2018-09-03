@@ -12,12 +12,9 @@ const App = () => (
       <div className="row">
         <SignupSigninFormContainer />
       </div>
-      <div className="row">
-        <div className="col-10"></div>
-        <PreferencesModalContainer />
-      </div>
-      <div className="row">
+      <div className="row mt-4 mx-5">
         <CoinPairFormContainer />
+        <PreferencesModalContainer />
       </div>
       <div className="row">
         <ExchangePricesPerCoinPairContainer />
