@@ -3,7 +3,7 @@ import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar } fro
 import { ClipLoader } from 'react-spinners';
 
 // Add exchanges to this list to remove them from all arbitrage opportunities
-const EXCHANGES_BLACKLIST = ['localbitcoin', 'WEX', 'CCEDK', 'Cryptsy', 'Yobit']
+const EXCHANGES_BLACKLIST = ['localbitcoin', 'WEX', 'CCEDK', 'Cryptsy', 'Yobit', 'TheRockTrading', 'CCEX', 'Simex', 'Quoine']
 // Add coins to this list to remove them from all arbitrage opportunities
 const COINS_BLACKLIST = ['NEO']
 // Add pairs of a coin and an exchange to remove the exchange from opportunities relating only to the given coin

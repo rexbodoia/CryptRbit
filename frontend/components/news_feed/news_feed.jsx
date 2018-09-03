@@ -20,6 +20,12 @@ export default class NewsFeed extends React.Component {
     this.props.fetchSources();
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.coinPair !== newProps.coinPair) {
+      this.props.fetchArticles(newProps.coinPair);
+    }
+  }
+
   handleNavChange(e) {
     e.preventDefault();
     let newCurrentPage = parseInt(e.target.innerText);

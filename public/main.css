@@ -31,6 +31,12 @@ ul {
   padding: 20px;
 }
 
+.nav-buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 .arbitrage-heading {
   width: 70%;
   margin: 0 auto;
