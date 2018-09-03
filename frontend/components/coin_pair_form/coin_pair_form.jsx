@@ -13,6 +13,14 @@ class CoinPairForm extends React.Component {
 
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.viewArbitrage = this.viewArbitrage.bind(this);
+  }
+
+  viewArbitrage(e) {
+    e.preventDefault();
+    this.setState({fsym: ''});
+    this.setState({tsym: ''});
+    this.props.changeCoinPair(this.state.fsym, this.state.tsym);
   }
 
   update(field) {
@@ -33,7 +41,7 @@ class CoinPairForm extends React.Component {
       <form onSubmit={this.handleSubmit} className="d-inline p-2 w-100 col-11">
         <div className="row" align="center">
 
-        <button className="col-3">View Arbitrage Opportunities</button>
+        <button className="col-3" onClick={this.viewArbitrage}>View Arbitrage Opportunities</button>
 
           <div className="col-7">
             <label className="col-6">From-Currency:
