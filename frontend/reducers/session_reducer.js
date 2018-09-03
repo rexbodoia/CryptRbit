@@ -27,7 +27,7 @@ const sessionReducer = (state = _nullUser, action ) => {
         return    merge({}, state, {
             coin: action.payload.data.prefs.coin,
             newsSource: action.payload.data.prefs.newsSource,
-            exchange: action.payload.data.prefs.newsCategory,
+            newsCategory: action.payload.data.prefs.newsCategory,
         })
         default:
            return state;
