@@ -1,4 +1,5 @@
 import React from 'react';
+import PreferencesModalContainer from '../preferences_modal/preferences_modal_container';
 
 class SignupSigninForm extends React.Component {
   constructor(props) {
@@ -117,7 +118,8 @@ class SignupSigninForm extends React.Component {
 
   renderLogout() {
     return (
-      <div>
+      <div className="nav-buttons">
+        <PreferencesModalContainer />
         <button className="btn btn-warning" onClick={this.logoutUser}>Logout</button>
       </div>
     );
@@ -148,7 +150,9 @@ class SignupSigninForm extends React.Component {
     return (
       <nav className="navbar navbar-light bg-dark justify-content-between w-100 pt-2 border-bottom" style={{ borderColor: "rgb(150,150,150)"}}>
         <a className="navbar-brand" style={{ color: "white", fontSize: 28 }}>CryptRbit</a>
-        {this.renderNav()}
+        <div>
+          {this.renderNav()}
+        </div>
       </nav>
     );
   }

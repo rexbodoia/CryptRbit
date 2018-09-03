@@ -7,6 +7,8 @@ const mapStateToProps = (state, ownProps) => {
   let coinPair;
   if (state.entities.coinPair && state.entities.coinPair.fsym) {
     coinPair = `categories=${state.entities.coinPair.fsym}`;
+  } else if (state.session.coin) {
+    coinPair = `categories=${state.session.coin}`;
   } else {
     coinPair = '';
   }
