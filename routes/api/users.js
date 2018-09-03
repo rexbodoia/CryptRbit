@@ -30,8 +30,6 @@ router.patch("/prefs",
     // console.log(user);
     const updated =  User.findOneAndUpdate({_id: id}, {$set:{prefs: prefs}}, {new: true, upsert: true}).then(user => res.json(user));
     // console.log(res.body)
-
-
   }
 );
 
@@ -76,6 +74,7 @@ router.post('/login', (req, res) => {
         .then(isMatch => {
           if (isMatch) {
             console.log(user.prefs);
+            console.log(user.id);
             const payload = {id: user.id, prefs: user.prefs};
 
             jsonwebtoken.sign(

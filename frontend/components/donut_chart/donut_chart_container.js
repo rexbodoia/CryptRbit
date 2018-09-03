@@ -7,7 +7,7 @@ import {
 
 //under entitites...
 
-const msp = ( state ) => { 
+const msp = ( state ) => {
     const data = state.entities.exchangeDonutData;
     let chartData;
     let coinPair;
@@ -20,7 +20,7 @@ const msp = ( state ) => {
 
     if (state.entities.coinPair) {
         coinPair = state.entities.coinPair
-    } else if ( state.session.coin) {
+    } else if (state.session.coin) {
         coinPair = {fsym: state.session.coin, tsym: "USD" }
     } else {
         coinPair = { fsym: "BTC", tsym: "USD"}
